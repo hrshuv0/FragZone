@@ -14,5 +14,20 @@ public static class ApplicationServiceExtensions
             options.UseSqlServer(connectionString);
         });
 
+        var loggerFactory = services.BuildServiceProvider().GetRequiredService<ILoggerFactory>();
+
+        try
+        {
+            // Migrate and Seed Data
+            
+            var context = services.BuildServiceProvider().GetRequiredService<FragDbContext>();
+            // await context.Database.MigrateAsync();
+            
+        }
+        catch (Exception e)
+        {
+            var logger = loggerFactory.CreateLogger<Program>();
+            logger.LogError(e, "An error occured during migration");
+        }
     }
 }
