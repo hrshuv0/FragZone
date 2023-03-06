@@ -6,7 +6,7 @@ namespace Infrastructure.Data;
 
 public class FragDbContext : DbContext
 {
-    public FragDbContext(DbContextOptions options) : base(options)
+    public FragDbContext(DbContextOptions<FragDbContext> options) : base(options)
     {
     }
 
