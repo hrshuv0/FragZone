@@ -12,11 +12,22 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
+      <Folder Include="Areas\Admin\Data" />
+      <Folder Include="Areas\Admin\Models" />
+      <Folder Include="Areas\Admin\Views" />
+      <Folder Include="Areas\Moderator\Controllers" />
+      <Folder Include="Areas\Moderator\Data" />
+      <Folder Include="Areas\Moderator\Models" />
+      <Folder Include="Areas\Moderator\Views" />
+      <Folder Include="Areas\Player\Controllers" />
+      <Folder Include="Areas\Player\Data" />
+      <Folder Include="Areas\Player\Models" />
+      <Folder Include="Areas\Player\Views" />
     </ItemGroup>
 
     <ItemGroup>
