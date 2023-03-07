@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data;
+﻿using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions;
@@ -13,6 +14,13 @@ public static class ApplicationServiceExtensions
         {
             options.UseSqlServer(connectionString);
         });
+
+        #region Dependency Injection
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        #endregion
+        
 
         var loggerFactory = services.BuildServiceProvider().GetRequiredService<ILoggerFactory>();
 

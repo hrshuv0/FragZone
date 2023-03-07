@@ -46,7 +46,7 @@ public abstract class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, T
         return result;
     }
 
-    public async Task<(IList<TResult> Items, int Total, int TotalFilter)> GetAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+    public async Task<(IList<TResult> Items, int Total, int TotalFilter)> LoadAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int pageIndex = 1, int pageSize = 10, bool disableTracking = true)
     {
         IQueryable<TEntity> query = _dbSet.AsQueryable();
