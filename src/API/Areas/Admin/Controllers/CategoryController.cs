@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Areas.Admin.Controllers;
 
-public class CategoryManageController : BaseApiController
+[Area("Admin")]
+public class CategoryController : BaseApiController
 {
     #region CONFIG
 
     private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryManageController(IUnitOfWork unitOfWork)
+    public CategoryController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }

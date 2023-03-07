@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 var config = builder.Configuration;
 await builder.Services.AddApplicationServices(config);
 
+builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -24,9 +25,16 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "default",
+    pattern:"{area=Player}/{controller}/{action=Index}/{id?}");
 
 app.MapControllers();
 
