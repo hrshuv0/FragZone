@@ -19,6 +19,7 @@ public class CategoryManageController : BaseApiController
     #endregion
 
 
+    [HttpGet]
     public async Task<IActionResult> Get()
     {
         IList<Category> result = new List<Category>();
