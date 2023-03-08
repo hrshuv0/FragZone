@@ -7,6 +7,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HomeModule } from "./home/home.module";
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "./routes";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { appRoutes } from "./routes";
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     HomeModule,
     CategoryModule

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavUserComponent } from './nav/nav-user/nav-user.component';
 import { NavAdminComponent } from './nav/nav-admin/nav-admin.component';
 import { AccountModule } from "../account/account.module";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 
 
 
@@ -17,7 +18,8 @@ import { AccountModule } from "../account/account.module";
     AccountModule
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    BsDropdownModule
   ]
 })
 export class CoreModule { }
