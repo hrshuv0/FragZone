@@ -10,7 +10,6 @@ public class CategoryController : BaseApiController
 {
     #region CONFIG
 
-    private readonly ILogger _logger;
     private readonly IUnitOfWork _unitOfWork;
 
     public CategoryController(ILoggerFactory factory, IUnitOfWork unitOfWork)

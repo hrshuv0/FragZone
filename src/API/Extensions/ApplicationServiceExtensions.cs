@@ -1,5 +1,9 @@
 ﻿using Core.Interfaces;
+using Core.Repositories;
+using Core.Services;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions;
@@ -21,9 +25,9 @@ public static class ApplicationServiceExtensions
         
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IAuthRepository, AuthRepository>();
+        services.AddScoped<IAuthService, AuthService>();
 
-        
-        
 
         var loggerFactory = services.BuildServiceProvider().GetRequiredService<ILoggerFactory>();
 
