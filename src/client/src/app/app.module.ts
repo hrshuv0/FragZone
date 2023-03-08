@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CategoryModule } from "./category/category.module";
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     HttpClientModule,
+    HomeModule,
     CategoryModule
   ],
   providers: [],
