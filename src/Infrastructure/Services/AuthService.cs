@@ -1,4 +1,5 @@
-﻿using Core.Dtos.Identity;
+﻿using Core.Common.Exceptions;
+using Core.Dtos.Identity;
 using Core.Entities.Identity;
 using Core.Repositories;
 using Core.Services;
@@ -22,18 +23,22 @@ public class AuthService : IAuthService
             userDto.Email = userDto.Email!.Normalize();
             
             if(await _authRepository.UserNameExists(userDto.UserName))
-                throw new Exception("Username already exists");
+                throw new FragException("Username already exists");
             
             if(await _authRepository.UserEmailExists(userDto.Email))
-                throw new Exception("Email already in used");
+                throw new FragException("Email already in used");
 
             var userToCreate = new ApplicationUser()
             {
                 UserName = userDto.UserName,
-                Email = userDto.Email
+                Email = userDto.Email,
+                DisplayName = userDto.UserName
             };
 
             var user = await _authRepository.Register(userToCreate, userDto.Password!);
+
+            if (user is null)
+                throw new FragException("Unable to register");
 
             var userToReturn = new UserDetailsDto()
             {
@@ -43,6 +48,10 @@ public class AuthService : IAuthService
             };
 
             return userToReturn;
+        }
+        catch (FragException ex)
+        {
+            throw new FragException(ex.Message);
         }
         catch (Exception e)
         {

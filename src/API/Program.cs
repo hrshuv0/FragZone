@@ -1,4 +1,7 @@
+using System.Net;
 using API.Extensions;
+using Core.Common.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Serilog;
 using Serilog.Events;
 
@@ -20,7 +23,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 var config = builder.Configuration;
 await builder.Services.AddApplicationServices(config);
 await builder.Services.AddIdentityServices(config);
@@ -37,12 +39,25 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseExceptionHandler(options =>
+{
+    options.Run(async context =>
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        var error = context.Features.Get<IExceptionHandlerFeature>();
+        if (error is not null)
+        {
+            context.Response.AddApplicationError(error.Error.Message);
+            await context.Response.WriteAsync(error.Error.Message);
+        }
+    });
+});
+
 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 
 app.MapControllerRoute(
     name: "areas",

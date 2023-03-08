@@ -1,4 +1,5 @@
-﻿using Core.Dtos.Identity;
+﻿using Core.Common.Exceptions;
+using Core.Dtos.Identity;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,25 +9,31 @@ public class AuthController : BaseApiController
 {
     private readonly IAuthService _authService;
 
-    public AuthController(IAuthService authService)
+    public AuthController(ILoggerFactory factory, IAuthService authService)
     {
+        _logger = factory.CreateLogger<AuthController>();
         _authService = authService;
     }
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
+        // throw new Exception("Test exception");
         try
         {
             var user = await _authService.Register(registerDto);
 
             return Ok(user);
         }
-        catch (Exception e)
+        catch (FragException ex)
         {
-            _logger.LogError(e.Message);
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
         }
 
-        return BadRequest("Failed to register");
+        return BadRequest("Register failed");
     }
 }

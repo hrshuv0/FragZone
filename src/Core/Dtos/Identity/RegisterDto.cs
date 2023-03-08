@@ -16,5 +16,6 @@ public class RegisterDto
     public DateTime DateOfBirth { get; set; }
 
     [Required]
+    [MinLength(4, ErrorMessage = "Password minimum lenght must be 4")]
     public string? Password { get; set; }
 }
