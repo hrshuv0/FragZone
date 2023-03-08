@@ -33,6 +33,10 @@ public static class IdentityServiceExtension
 
         try
         {
+            // Migrate and Seed Data
+            
+            var context = services.BuildServiceProvider().GetRequiredService<FragIdentityDbContext>();
+            await context.Database.MigrateAsync();
 
         }
         catch (Exception ex)

@@ -8,6 +8,8 @@ public static class ApplicationServiceExtensions
 {
     public static async Task AddApplicationServices(this IServiceCollection services, IConfiguration config)
     {
+
+        #region Database CONFIG
         var connectionString = config.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<FragDbContext>(options =>
@@ -15,11 +17,12 @@ public static class ApplicationServiceExtensions
             options.UseSqlServer(connectionString);
         });
 
-        #region Dependency Injection
+        #endregion
+        
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        #endregion
+        
         
 
         var loggerFactory = services.BuildServiceProvider().GetRequiredService<ILoggerFactory>();
@@ -29,7 +32,7 @@ public static class ApplicationServiceExtensions
             // Migrate and Seed Data
             
             var context = services.BuildServiceProvider().GetRequiredService<FragDbContext>();
-            // await context.Database.MigrateAsync();
+            await context.Database.MigrateAsync();
             
         }
         catch (Exception e)

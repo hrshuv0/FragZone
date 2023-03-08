@@ -10,10 +10,12 @@ public class CategoryController : BaseApiController
 {
     #region CONFIG
 
+    private readonly ILogger _logger;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryController(IUnitOfWork unitOfWork)
+    public CategoryController(ILoggerFactory factory, IUnitOfWork unitOfWork)
     {
+        _logger = factory.CreateLogger<CategoryController>();
         _unitOfWork = unitOfWork;
     }
 
@@ -27,13 +29,13 @@ public class CategoryController : BaseApiController
         try
         {
             result = await _unitOfWork.CategoryService.GetAsync(c => c);
-
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogError(e.Message);
         }
 
+        _logger.LogInformation("Get Category List has been called");
         return Ok(result);
     }
 }
