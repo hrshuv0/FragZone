@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavUserComponent } from './nav/nav-user/nav-user.component';
 import { NavAdminComponent } from './nav/nav-admin/nav-admin.component';
 import { AccountModule } from "../account/account.module";
-import {BsDropdownModule} from "ngx-bootstrap/dropdown";
-import {RouterLink, RouterLinkActive} from "@angular/router";
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 
 
@@ -22,7 +22,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     CommonModule,
     BsDropdownModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    AccountModule
   ]
 })
 export class CoreModule { }
