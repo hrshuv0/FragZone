@@ -36,4 +36,30 @@ public class AuthController : BaseApiController
 
         return BadRequest("Register failed");
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+        try
+        {
+            var userExists = await _authService.UserExists(loginDto.UserName!);
+            if (!userExists)
+                return BadRequest("There is not account with this username");
+
+            var token = await _authService.Login(loginDto);
+
+            if (token is null)
+                return BadRequest("Username or password did not matched");
+
+            return Ok(new
+            {
+                Token = token
+            });
+        }
+        catch(Exception ex)
+        {
+            _logger.LogError(ex.Message);
+            return Unauthorized("Login failed");
+        }
+    }
 }

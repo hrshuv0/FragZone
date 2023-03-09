@@ -59,13 +59,34 @@ public class AuthService : IAuthService
         }
     }
 
-    public Task<UserDetailsDto> Login(LoginDto userDto)
+    public async Task<string> Login(LoginDto userDto)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var user = await _authRepository.Login(userDto.UserName!, userDto.Password!);
+
+            if (user is null)
+                throw new FragException("Username or password did not matched");
+
+            var token = _authRepository.CreateToken(user);
+
+            return token;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
-    public Task<bool> UserExists(string username)
+    public async Task<bool> UserExists(string username)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return await _authRepository.UserExists(username);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 }

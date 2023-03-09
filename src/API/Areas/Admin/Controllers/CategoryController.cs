@@ -1,11 +1,13 @@
 ﻿using API.Controllers;
 using Core.Entities;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize]
 public class CategoryController : BaseApiController
 {
     #region CONFIG
