@@ -4,6 +4,7 @@ import { HomeUserComponent } from './home-user/home-user.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { CoreModule } from "../core/core.module";
 import { HomeComponent } from './home/home.component';
+import {RouterOutlet} from "@angular/router";
 
 
 @NgModule({
@@ -14,11 +15,13 @@ import { HomeComponent } from './home/home.component';
   ],
   exports: [
     HomeAdminComponent,
-    HomeUserComponent
+    HomeUserComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
-    CoreModule
+    CoreModule,
+    RouterOutlet
   ]
 })
 export class HomeModule { }

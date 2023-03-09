@@ -4,6 +4,7 @@ import { NavUserComponent } from './nav/nav-user/nav-user.component';
 import { NavAdminComponent } from './nav/nav-admin/nav-admin.component';
 import { AccountModule } from "../account/account.module";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 
 
@@ -19,7 +20,9 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
   ],
   imports: [
     CommonModule,
-    BsDropdownModule
+    BsDropdownModule,
+    RouterLink,
+    RouterLinkActive
   ]
 })
 export class CoreModule { }

@@ -9,3 +9,12 @@
 .dropdown-toggle, .dropdown-item{
   cursor: pointer;
 }
+
+a{
+  text-decoration: none;
+  color: #2f3438;
+
+  &.active{
+    color: orange;
+  }
+}
