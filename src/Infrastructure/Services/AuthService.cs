@@ -59,7 +59,7 @@ public class AuthService : IAuthService
         }
     }
 
-    public async Task<string> Login(LoginDto userDto)
+    public async Task<(UserDetailsDto, string)> Login(LoginDto userDto)
     {
         try
         {
@@ -68,9 +68,15 @@ public class AuthService : IAuthService
             if (user is null)
                 throw new FragException("Username or password did not matched");
 
+            var userToReturn = new UserDetailsDto()
+            {
+                UserName = user.UserName,
+                Email = user.Email
+            };
+
             var token = _authRepository.CreateToken(user);
 
-            return token;
+            return (userToReturn, token);
         }
         catch (Exception ex)
         {

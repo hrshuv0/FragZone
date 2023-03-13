@@ -46,13 +46,14 @@ public class AuthController : BaseApiController
             if (!userExists)
                 return BadRequest("There is not account with this username");
 
-            var token = await _authService.Login(loginDto);
+            var (user, token) = await _authService.Login(loginDto);
 
-            if (token is null)
+            if (token is null || user is null)
                 return BadRequest("Username or password did not matched");
 
             return Ok(new
             {
+                User = user,
                 Token = token
             });
         }
