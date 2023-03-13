@@ -1,1 +1,30 @@
-<p>login works!</p>
+
+
+<div class="form-signin w-100 m-auto text-center mt-5">
+  <form [formGroup]="loginForm">
+    <img class="mb-4" src="../../assets/images/Frag.gif" alt="" width="88" height="80">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" formControlName="username" placeholder="name@example.com">
+      <label>Email address</label>
+    </div>
+    <div class="form-floating mt-2">
+      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <label>Password</label>
+    </div>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+  </form>
+
+</div>
+
+
+<p>Form value: {{loginForm.value | json}}</p>
+<p>Form status: {{loginForm.status | json}}</p>

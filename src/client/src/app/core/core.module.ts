@@ -5,6 +5,7 @@ import { NavAdminComponent } from './nav/nav-admin/nav-admin.component';
 import { AccountModule } from "../account/account.module";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -23,7 +24,8 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
     BsDropdownModule,
     RouterLink,
     RouterLinkActive,
-    AccountModule
+    AccountModule,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule { }
