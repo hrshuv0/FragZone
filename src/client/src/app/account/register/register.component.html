@@ -6,16 +6,42 @@
     <h1 class="h3 mb-3 fw-normal">Register</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
+      <input type="email"
+             class="form-control"
+             [ngClass]="{'is-invalid' : registerForm.get('email')!.errors && registerForm.get('email')!.touched}"
+             formControlName="email"
+             placeholder="name@example.com">
       <label >Email address</label>
+      <div class="invalid-feedback">Please choose a username</div>
     </div>
+
+
     <div class="form-floating mt-2">
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <input type="password"
+             class="form-control"
+             [ngClass]="{'is-invalid' : registerForm.get('password')!.errors && registerForm.get('password')!.touched}"
+             formControlName="password"
+             placeholder="Password">
       <label >Password</label>
+      <div class="invalid-feedback" *ngIf="registerForm.get('password')!.hasError('required') &&
+      registerForm.get('password')!.touched">Password is required</div>
+      <div class="invalid-feedback" *ngIf="registerForm.get('password')!.hasError('minlength') &&
+      registerForm.get('password')!.touched">Password must be at least 4 character</div>
     </div>
+
+
     <div class="form-floating mt-2">
-      <input type="password" class="form-control" formControlName="confirmPassword"  placeholder="Confirm Password">
+      <input type="password"
+             class="form-control"
+             [ngClass]="{'is-invalid' : registerForm.get('confirmPassword')!.errors && registerForm.get('confirmPassword')!.touched ||
+             registerForm.get('confirmPassword')!.touched && registerForm.hasError('mismatch')!}"
+             formControlName="confirmPassword"
+             placeholder="Confirm Password">
       <label >Confirm Password</label>
+      <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword')!.hasError('required') &&
+      registerForm.get('confirmPassword')!.touched">Confirm Password is required</div>
+      <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch')! &&
+      registerForm.get('confirmPassword')!.touched">Password must be matched</div>
     </div>
 
     <div class="checkbox mb-3">
@@ -23,6 +49,8 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
+
+
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
     <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
   </form>
