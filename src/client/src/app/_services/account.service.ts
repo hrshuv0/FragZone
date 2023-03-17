@@ -21,9 +21,19 @@ export class AccountService {
         const user = response;
         if(user){
           localStorage.setItem('token', user.token);
+          localStorage.setItem('user', user.user);
           console.log(user);
         }
       })
     );
   }
+
+
+  logout(){
+    localStorage.removeItem('token');
+    console.log('logged out');
+  }
+
+
+
 }

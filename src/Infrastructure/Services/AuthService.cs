@@ -71,7 +71,8 @@ public class AuthService : IAuthService
             var userToReturn = new UserDetailsDto()
             {
                 UserName = user.UserName,
-                Email = user.Email
+                Email = user.Email,
+                DisplayName = user.DisplayName
             };
 
             var token = _authRepository.CreateToken(user);
