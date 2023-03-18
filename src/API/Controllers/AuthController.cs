@@ -57,6 +57,10 @@ public class AuthController : BaseApiController
                 Token = token
             });
         }
+        catch (FragException ex)
+        {
+            return BadRequest(ex.Message);
+        }
         catch(Exception ex)
         {
             _logger.LogError(ex.Message);

@@ -79,6 +79,10 @@ public class AuthService : IAuthService
 
             return (userToReturn, token);
         }
+        catch (FragException ex)
+        {
+            throw new FragException(ex.Message);
+        }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
