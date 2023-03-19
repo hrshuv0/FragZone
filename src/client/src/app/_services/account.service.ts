@@ -13,6 +13,7 @@ export class AccountService {
 
   baseUrl = environment.apiUrl;
   jwtHelper = new JwtHelperService();
+  decodedToken: any;
 
   private currentUserSource = new BehaviorSubject<IUser>(null!);
   currentUser$ = this.currentUserSource.asObservable();
@@ -25,7 +26,8 @@ export class AccountService {
         const user = response;
         if(user){
           localStorage.setItem('token', user.token);
-          localStorage.setItem('user', user.user);
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          console.log(this.decodedToken);
           // console.log(user);
         }
       })

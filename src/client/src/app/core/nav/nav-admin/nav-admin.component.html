@@ -31,7 +31,7 @@
       <ul class="navbar-nav" *ngIf="loggedIn()">
         <li class="nav-item dropdown" dropdown>
           <a class="nav-link dropdown-toggle" dropdownToggle>
-            Welcome User
+            {{authService.decodedToken!.unique_name | titlecase}}
           </a>
           <ul class="dropdown-menu mt-3" *dropdownMenu>
             <li><a class="dropdown-item" href="#">Action</a></li>

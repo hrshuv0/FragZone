@@ -8,7 +8,7 @@ import { AccountService } from "../../../_services/account.service";
 })
 export class NavAdminComponent implements OnInit{
 
-  constructor(private authService: AccountService) {
+  constructor(public authService: AccountService) {
   }
 
   ngOnInit(): void {
