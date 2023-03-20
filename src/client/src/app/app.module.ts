@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from './app.component';
 import { CategoryModule } from "./category/category.module";
@@ -9,6 +10,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from "./core/core.module";
 import { ErrorInterceptorProvider } from "./core/_interceptors/error.interceptor";
+
+export function tokenGetter(){
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -21,7 +26,14 @@ import { ErrorInterceptorProvider } from "./core/_interceptors/error.interceptor
     AppRoutingModule,
     HomeModule,
     CategoryModule,
-    CoreModule
+    CoreModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth']
+      }
+    }),
   ],
   providers: [
     ErrorInterceptorProvider
