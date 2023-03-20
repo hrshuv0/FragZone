@@ -8,6 +8,7 @@ import { HomeModule } from "./home/home.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { CoreModule } from "./core/core.module";
+import { ErrorInterceptorProvider } from "./core/_interceptors/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { CoreModule } from "./core/core.module";
     CategoryModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    ErrorInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
