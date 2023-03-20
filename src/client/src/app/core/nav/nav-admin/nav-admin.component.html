@@ -4,15 +4,16 @@
 
 
     <nav class="my-2 my-md-0 me-md-3 text-uppercase">
-      <a class="p-2" [routerLink]="['/category']" routerLinkActive="active">Category</a>
-      <a class="p-2" >Link</a>
+      <a class="p-2 nav-item" [routerLink]="['/category']" routerLinkActive="active">Category</a>
+      <a class="p-2 nav-item" >Link</a>
 
     </nav>
 
     <div class="collapse navbar-collapse my-2" >
       <ul class="navbar-nav me-auto">
+
         <li class="nav-item dropdown" dropdown>
-          <a class="p-2 dropdown-toggle  text-uppercase" dropdownToggle>
+          <a class="p-2 dropdown-toggle  text-uppercase nav-item" dropdownToggle>
             Dropdown
           </a>
           <ul class="dropdown-menu mt-3 " *dropdownMenu>
@@ -23,7 +24,50 @@
           </ul>
         </li>
 
+        <li class="nav-item dropdown" dropdown>
+          <a class="dropdown-toggle text-uppercase p-2 nav-item" dropdownToggle>
+            Manage
+          </a>
+          <ul class="dropdown-menu mt-3" aria-labelledby="dropdownMenuButton" *dropdownMenu>
+            <li><a class="dropdown-item" [routerLink]="['/category']">Category</a></li>
+            <li>
+              <a class="dropdown-item" href="#">Another action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                Submenu &raquo;
+              </a>
+              <ul class="dropdown-menu dropdown-submenu">
+                <li>
+                  <a class="dropdown-item" href="#">Submenu item 1</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Submenu item 2</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+                  <ul class="dropdown-menu dropdown-submenu">
+                    <li>
+                      <a class="dropdown-item" href="#">Multi level 1</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Multi level 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Submenu item 4</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Submenu item 5</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
       </ul>
+
 <!--      <form class="d-flex" role="search">-->
 <!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
 <!--        <button class="btn btn-outline-success" type="submit">Search</button>-->
