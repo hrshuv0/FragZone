@@ -18,7 +18,6 @@ public class AuthController : BaseApiController
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
-        // throw new Exception("Test exception");
         try
         {
             var user = await _authService.Register(registerDto);

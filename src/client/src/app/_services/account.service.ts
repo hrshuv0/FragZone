@@ -46,4 +46,7 @@ export class AccountService {
   }
 
 
+  register(user: IUser) {
+    return this.http.post(this.baseUrl + 'auth/register', user);
+  }
 }
