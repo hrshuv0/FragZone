@@ -8,6 +8,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  title!: 'FragZone';
   jwtHelper = new JwtHelperService();
 
 
