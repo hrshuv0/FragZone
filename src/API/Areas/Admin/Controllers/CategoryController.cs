@@ -39,4 +39,24 @@ public class CategoryController : BaseApiController
         _logger.LogInformation("Get Category List has been called");
         return Ok(result);
     }
+    
+    [HttpGet("{id:long}")]
+    public async Task<IActionResult> Get(long id)
+    {
+        Category category = new Category();
+
+        try
+        {
+            category = await _unitOfWork.CategoryService.GetByIdAsync(id);
+            
+            if(category is not null)
+                return Ok(category);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+        }
+
+        return NotFound("Category Not found");
+    }
 }
