@@ -1,1 +1,27 @@
-<p>category-edit works!</p>
+
+
+<div class="w-75 mt-2">
+  <div class="row justify-content-end">
+    <div class="col">
+      <h3>Edit Category</h3>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-outline-success">Create New</button>
+    </div>
+  </div>
+
+  <form class="mt-5" (ngSubmit)="update()">
+    <div class="form__group field">
+      <input type="input" class="form__field" placeholder="Name" name="name" [ngModel]="category?.name"/>
+      <label class="form__label">Category Name</label>
+    </div>
+
+    <div class="form__group">
+      <button class="btn btn-primary me-2" type="button">Cancel</button>
+      <button class="btn btn-success" type="submit">Update</button>
+    </div>
+
+  </form>
+</div>
+
+

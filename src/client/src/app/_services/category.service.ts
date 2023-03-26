@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../environments/environment.development";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../environments/environment.development";
+import { ICategory } from "../_models/category";
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class CategoryService {
 
   getCategoryList(): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl + 'category');
+  }
+
+  getCategory(id: number): Observable<ICategory>{
+    return this.http.get<ICategory>(this.baseUrl + 'category/' + id);
   }
 }
