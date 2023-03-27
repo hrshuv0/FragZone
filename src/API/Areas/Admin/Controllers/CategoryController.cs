@@ -59,4 +59,28 @@ public class CategoryController : BaseApiController
 
         return NotFound("Category Not found");
     }
+
+    [HttpPut("edit/{id:long}")]
+    public async Task<IActionResult> Edit(long id, Category model)
+    {
+        try
+        {
+            if (id != model.Id)
+                return BadRequest("Something wrong!");
+
+            var categoryExists = await _unitOfWork.CategoryService.IsExistsAsync(x => x.Id == id);
+            if (!categoryExists)
+                return NotFound("Category Not Found");
+
+            await _unitOfWork.CategoryService.UpdateAsync(model);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+        }
+
+
+        return Ok();
+    }
 }

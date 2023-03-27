@@ -92,7 +92,6 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
     {
         try
         {
-            
             return _entityRepository.IsExistsAsync(predicate);
         }
         catch (Exception ex)
@@ -113,7 +112,7 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
         }
     }
 
-    public Task AddRangeAsync(IList<TEntity> entities)
+    public virtual Task AddRangeAsync(IList<TEntity> entities)
     {
         try
         {
@@ -125,7 +124,7 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
         }
     }
 
-    public Task UpdateAsync(TEntity entity)
+    public virtual Task UpdateAsync(TEntity entity)
     {
         try
         {
@@ -137,7 +136,7 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
         }
     }
 
-    public Task UpdateRangeAsync(IList<TEntity> entities)
+    public virtual Task UpdateRangeAsync(IList<TEntity> entities)
     {
         throw new NotImplementedException();
     }
