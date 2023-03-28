@@ -12,7 +12,7 @@
 
   <form class="mt-5" (ngSubmit)="update()">
     <div class="form__group field">
-      <input type="input" class="form__field" placeholder="Name" name="name" [ngModel]="category?.name"/>
+      <input type="input" class="form__field" placeholder="Name" name="name" [(ngModel)]="category.name"/>
       <label class="form__label">Category Name</label>
     </div>
 
@@ -23,5 +23,6 @@
 
   </form>
 </div>
+
 
 

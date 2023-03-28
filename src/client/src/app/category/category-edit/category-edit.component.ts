@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from "../../_services/category.service";
 import { AlertifyService } from "../../_services/alertify.service";
 import { ActivatedRoute } from "@angular/router";
@@ -30,6 +30,12 @@ export class CategoryEditComponent implements OnInit{
   }
 
   update() {
-    console.log(this.category);
+    this.categoryService.updateCategory(+this.route.snapshot.params['id'], this.category).subscribe(() =>{
+      this.alertify.success("Category updated successfully");
+    }, error => {
+      this.alertify.error(error);
+    });
   }
+
+
 }

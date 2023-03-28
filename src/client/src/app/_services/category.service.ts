@@ -20,4 +20,9 @@ export class CategoryService {
   getCategory(id: number): Observable<ICategory>{
     return this.http.get<ICategory>(this.baseUrl + 'category/' + id);
   }
+
+  updateCategory(id: number, category: ICategory)
+  {
+    return this.http.put(this.baseUrl + 'category/edit/' + id, category);
+  }
 }
