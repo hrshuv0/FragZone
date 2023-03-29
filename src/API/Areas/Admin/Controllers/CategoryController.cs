@@ -83,4 +83,27 @@ public class CategoryController : BaseApiController
 
         return Ok();
     }
+
+    [HttpDelete("delete/{id:long}")]
+    public async Task<IActionResult> Delete(long id)
+    {
+        try
+        {
+            var categoryExists = await _unitOfWork.CategoryService.IsExistsAsync(x => x.Id == id);
+
+            if (!categoryExists)
+                return NotFound("Category Not Found");
+
+            await _unitOfWork.CategoryService.DeleteAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Ok("Category Deleted Successfully");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message);
+        }
+        
+        return BadRequest("Category Deletion Failed");
+    }
 }

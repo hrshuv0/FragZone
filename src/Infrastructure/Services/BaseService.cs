@@ -143,17 +143,38 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
 
     public Task DeleteAsync(TKey id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _entityRepository.DeleteAsync(id);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public Task DeleteAsync(TEntity entity)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _entityRepository.DeleteAsync(entity);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public Task DeleteAsync(Expression<Func<TEntity, bool>> predicate)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _entityRepository.DeleteAsync(predicate);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public Task DeleteRangeAsync(IList<TEntity> entities)
