@@ -97,7 +97,7 @@ public class CategoryController : BaseApiController
             await _unitOfWork.CategoryService.DeleteAsync(id);
             await _unitOfWork.SaveChangesAsync();
 
-            return Ok("Category Deleted Successfully");
+            return Ok();
         }
         catch (Exception ex)
         {

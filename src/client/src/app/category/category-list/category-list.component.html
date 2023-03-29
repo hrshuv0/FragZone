@@ -19,7 +19,7 @@
             <div class="text-center">
               <button class="btn btn-sm btn-outline-info" [routerLink]="['/category/edit', category.id]">
                 <i class="fa fa-pencil me-2"></i>Edit</button>
-              <button class="btn btn-sm btn-outline-warning ms-2">
+              <button class="btn btn-sm btn-outline-warning ms-2" (click)="deleteCategory(category.id)">
                 <i class="fa fa-trash-o me-2"></i>Delete</button>
             </div>
           </td>
