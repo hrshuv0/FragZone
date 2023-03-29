@@ -7,6 +7,7 @@
       <thead>
         <tr class="text-center">
           <th>Name</th>
+          <th>Last Modified</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -14,6 +15,9 @@
         <tr *ngFor="let category of categories" class="table-row  ">
           <td>
             <p class="ms-2 text-uppercase">{{category.name}}</p>
+          </td>
+          <td>
+            <p class="ms-2 text-uppercase">{{category.updatedTime | date:'short'}}</p>
           </td>
           <td>
             <div class="text-center">
