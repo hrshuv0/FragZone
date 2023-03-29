@@ -11,7 +11,7 @@
   </div>
 
   <form class="mt-5" (ngSubmit)="update()">
-    <div class="form__group field">
+    <div class="form__group field" *ngIf="category">
       <input type="input" class="form__field" placeholder="Name" name="name" [(ngModel)]="category.name"/>
       <label class="form__label">Category Name</label>
     </div>
