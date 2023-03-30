@@ -60,6 +60,27 @@ public class CategoryController : BaseApiController
         return NotFound("Category Not found");
     }
 
+    [HttpPost("create")]
+    public async Task<IActionResult> Create(Category model)
+    {
+        try
+        {
+            var isExists = await _unitOfWork.CategoryService.IsExistsAsync(x => x.Name == model.Name);
+            if (isExists)
+                return BadRequest($"{model.Name} Already Exists!");
+
+            await _unitOfWork.CategoryService.AddAsync(model);
+            await _unitOfWork.SaveChangesAsync();
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.Message);
+        }
+        return BadRequest("Category Creation Failed!");
+    }
+    
     [HttpPut("edit/{id:long}")]
     public async Task<IActionResult> Edit(long id, Category model)
     {
