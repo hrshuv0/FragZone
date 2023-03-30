@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { RouterLink, RouterModule, Routes } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import { AuthGuard } from "../_guards/auth.guard";
 
@@ -29,7 +29,8 @@ const routes: Routes = [
     CommonModule,
     RouterLink,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class CategoryModule { }

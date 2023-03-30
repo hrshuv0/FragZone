@@ -21,6 +21,11 @@ export class CategoryService {
     return this.http.get<ICategory>(this.baseUrl + 'category/' + id);
   }
 
+  createCategory(category: ICategory)
+  {
+    return this.http.post(this.baseUrl + 'category/create/', category);
+  }
+
   updateCategory(id: number, category: ICategory)
   {
     return this.http.put(this.baseUrl + 'category/edit/' + id, category);
