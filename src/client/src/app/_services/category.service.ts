@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { map, Observable } from "rxjs";
 import { environment } from "../../environments/environment.development";
 import { ICategory } from "../_models/category";
+import { PaginatedResult } from "../_models/pagination";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,25 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
 
-  getCategoryList(): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl + 'category');
+  getCategoryList(page?:number, itemsPerPage?:number): Observable<PaginatedResult<ICategory[]>>{
+    const paginatedResult: PaginatedResult<ICategory[]> = new PaginatedResult<ICategory[]>();
+    let params = new HttpParams();
+
+    if(page != null && itemsPerPage != null){
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<ICategory[]>(this.baseUrl + 'category', {observe: 'response', params})
+      .pipe(
+        map(response =>{
+          paginatedResult.result = response.body!;
+          if(response.headers.get('Pagination') != null){
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination')!);
+          }
+          return paginatedResult;
+        })
+      );
   }
 
   getCategory(id: number): Observable<ICategory>{

@@ -11,6 +11,8 @@ import {ICategory} from "../../_models/category";
 export class CategoryListComponent implements OnInit{
 
   categories!: ICategory[];
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(private categoryService: CategoryService, private alertify: AlertifyService) {
   }
@@ -20,8 +22,8 @@ export class CategoryListComponent implements OnInit{
   }
 
   getCategoryList() {
-    this.categoryService.getCategoryList().subscribe(data =>{
-      this.categories = data;
+    this.categoryService.getCategoryList(this.pageNumber, this.pageSize).subscribe(data =>{
+      this.categories = data.result;
       // console.log(data);
     }, error => {
       console.log(error);
