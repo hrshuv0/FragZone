@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { JwtModule } from "@auth0/angular-jwt";
+import { PaginationModule } from "ngx-bootstrap/pagination";
 
 import { AppComponent } from './app.component';
 import { CategoryModule } from "./category/category.module";
@@ -34,6 +35,7 @@ export function tokenGetter(){
         disallowedRoutes: ['localhost:5000/api/auth']
       }
     }),
+    PaginationModule.forRoot()
   ],
   providers: [
     ErrorInterceptorProvider

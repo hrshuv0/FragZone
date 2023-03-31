@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from "../../_services/category.service";
 import { AlertifyService } from "../../_services/alertify.service";
-import {ICategory} from "../../_models/category";
+import { ICategory } from "../../_models/category";
+import { Pagination } from "../../_models/pagination";
+import { ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-category-list',
@@ -11,20 +13,23 @@ import {ICategory} from "../../_models/category";
 export class CategoryListComponent implements OnInit{
 
   categories!: ICategory[];
-  pageNumber = 1;
-  pageSize = 5;
+  pagination!: Pagination;
 
-  constructor(private categoryService: CategoryService, private alertify: AlertifyService) {
+  constructor(private categoryService: CategoryService,
+              private route: ActivatedRoute,
+              private alertify: AlertifyService) {
   }
 
   ngOnInit(): void {
-    this.getCategoryList();
+    this.route.data.subscribe(data =>{
+      this.categories = data['categories'].result;
+      this.pagination = data['categories'].pagination;
+    });
   }
 
   getCategoryList() {
-    this.categoryService.getCategoryList(this.pageNumber, this.pageSize).subscribe(data =>{
+    this.categoryService.getCategoryList(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe(data =>{
       this.categories = data.result;
-      // console.log(data);
     }, error => {
       console.log(error);
     });
@@ -44,5 +49,10 @@ export class CategoryListComponent implements OnInit{
 
 
 
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.getCategoryList();
   }
 }
