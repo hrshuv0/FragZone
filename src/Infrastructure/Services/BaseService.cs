@@ -38,7 +38,7 @@ public class BaseService<TEntity, TKey> : IBaseService<TEntity, TKey>
         }
     }
 
-    public Task<(IList<TResult> Items, int Total, int TotalFilter)> LoadAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+    public Task<(IList<TResult> Items, int Total, int TotalFilter, int totalPages)> LoadAsync<TResult>(Expression<Func<TEntity, TResult>> selector, Expression<Func<TEntity, bool>>? predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         int pageIndex = 1, int pageSize = 10, bool disableTracking = true)
     {
         try

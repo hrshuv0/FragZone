@@ -1,4 +1,6 @@
 ﻿using API.Controllers;
+using API.Helpers;
+using API.Helpers.Pagination;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -24,20 +26,28 @@ public class CategoryController : BaseApiController
 
 
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get([FromQuery] PaginationParams pagination)
     {
         IList<Category> result = new List<Category>();
+        
         try
         {
-            result = await _unitOfWork.CategoryService.GetAsync(c => c);
+            var total = 0;
+            var totalFiltered = 0;
+            var totalPages = 0;
+            
+            (result, total, totalFiltered, totalPages) = await _unitOfWork.CategoryService.LoadAsync(c => c, null, null, null, pagination.PageNumber, pagination.PageSize);
+            
+            Response.AddPagination(pagination.PageNumber, pagination.PageSize, total, totalFiltered, totalPages);
+            
+            return Ok(result);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
         }
 
-        _logger.LogInformation("Get Category List has been called");
-        return Ok(result);
+        return BadRequest("Failed To Load Category");
     }
     
     [HttpGet("{id:long}")]

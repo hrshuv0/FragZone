@@ -14,7 +14,7 @@ public interface IBaseRepository<TEntity, TKey> where TEntity : IBaseEntity<TKey
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
         bool disableTracking = true);
 
-    Task<(IList<TResult> Items, int Total, int TotalFilter)> LoadAsync<TResult>(Expression<Func<TEntity, TResult>> selector, 
+    Task<(IList<TResult> Items, int Total, int TotalFilter, int totalPages)> LoadAsync<TResult>(Expression<Func<TEntity, TResult>> selector, 
         Expression<Func<TEntity, bool>>? predicate= null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
