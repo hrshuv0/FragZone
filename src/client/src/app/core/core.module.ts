@@ -6,19 +6,22 @@ import { AccountModule } from "../account/account.module";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     NavUserComponent,
-    NavAdminComponent
-  ],
-  exports: [
-    NavUserComponent,
     NavAdminComponent,
-    AccountModule
+    FooterComponent
   ],
+    exports: [
+        NavUserComponent,
+        NavAdminComponent,
+        AccountModule,
+        FooterComponent
+    ],
   imports: [
     CommonModule,
     BsDropdownModule,
