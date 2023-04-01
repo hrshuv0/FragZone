@@ -45,6 +45,15 @@ export class PublisherListComponent implements OnInit{
   }
 
   deletePublisher(id: number) {
+    this.alertify.confirm("Are you sure want to delete?", () =>{
+      this.publisherService.deletePublisher(id).subscribe(() =>{
+        this.getPublisherList();
+        this.alertify.warning("Deleted Successfully");
+      }, error => {
+        console.log(error);
+        this.alertify.error(error);
+      });
+    });
 
   }
 }

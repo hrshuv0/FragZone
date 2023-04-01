@@ -1,0 +1,28 @@
+
+
+<div class="w-75 mt-2">
+  <div class="row justify-content-end">
+    <div class="col">
+      <h3>Create Publisher</h3>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-outline-primary" [routerLink]="['/publisher']">Publisher List</button>
+    </div>
+  </div>
+
+  <form class="mt-5" [formGroup]="publisherForm" (ngSubmit)="create()">
+    <div class="form__group field" >
+      <input type="input" class="form__field" placeholder="Name" formControlName="name"/>
+      <label class="form__label">Publisher Name</label>
+    </div>
+
+    <div class="form__group">
+      <button class="btn btn-primary me-2" type="button">Cancel</button>
+      <button class="btn btn-success" type="submit">Create</button>
+    </div>
+
+  </form>
+</div>
+
+
+

@@ -1,0 +1,29 @@
+
+
+<div class="w-75 mt-2">
+  <div class="row justify-content-end">
+    <div class="col">
+      <h3>Edit Publisher</h3>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-outline-success" [routerLink]="['/publisher/create']">Create New</button>
+      <button class="btn btn-outline-primary ms-2" [routerLink]="['/publisher']">Manage</button>
+    </div>
+  </div>
+
+  <form class="mt-5" (ngSubmit)="update()">
+    <div class="form__group field" *ngIf="publisher">
+      <input type="input" class="form__field" placeholder="Name" name="name" [(ngModel)]="publisher.name"/>
+      <label class="form__label">Publisher Name</label>
+    </div>
+
+    <div class="form__group">
+      <button class="btn btn-primary me-2" type="button" [routerLink]="['/publisher']">Cancel</button>
+      <button class="btn btn-success" type="submit">Update</button>
+    </div>
+
+  </form>
+</div>
+
+
+

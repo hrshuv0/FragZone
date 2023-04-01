@@ -5,24 +5,31 @@ import { PublisherListComponent } from './publisher-list/publisher-list.componen
 import { AuthGuard } from "../_guards/auth.guard";
 import { PublisherListResolver } from "./publisher-list/publisher-list.resolver";
 import { PaginationModule } from "ngx-bootstrap/pagination";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
+import { PublisherEditComponent } from './publisher-edit/publisher-edit.component';
 
 
 const routes: Routes = [
   { path : '', component: PublisherListComponent, canActivate:[AuthGuard], resolve:{publishers:PublisherListResolver}},
+  { path : 'create', component: PublisherCreateComponent, canActivate:[AuthGuard]},
+  { path : 'edit/:id', component: PublisherEditComponent, canActivate:[AuthGuard]},
 
 
 ]
 
 @NgModule({
   declarations: [
-    PublisherListComponent
+    PublisherListComponent,
+    PublisherCreateComponent,
+    PublisherEditComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     PaginationModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     PublisherListComponent,

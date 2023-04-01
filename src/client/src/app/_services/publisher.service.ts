@@ -34,7 +34,19 @@ export class PublisherService {
       );
   }
 
+  getPublisher(id: number): Observable<IPublisher> {
+    return this.http.get<IPublisher>(this.baseUrl + 'publisher/' + id);
+  }
 
+  createPublisher(publisher: IPublisher) {
+    return this.http.post(this.baseUrl + 'publisher/create/', publisher);
+  }
 
+  deletePublisher(id: number) {
+    return this.http.delete(this.baseUrl + 'publisher/delete/' + id);
+  }
 
+  updatePublisher(id: number, publisher: IPublisher) {
+    return this.http.put(this.baseUrl + 'publisher/edit/' + id, publisher);
+  }
 }
