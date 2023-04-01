@@ -16,6 +16,7 @@ public  class UnitOfWork : IUnitOfWork
 
     public ICategoryRepository CategoryRepository { get; }
     public IPublisherRepository PublisherRepository { get; }
+    public IGameRepository GameRepository { get; }
 
     #endregion
 
@@ -23,6 +24,7 @@ public  class UnitOfWork : IUnitOfWork
 
     public ICategoryService CategoryService { get; }
     public IPublisherService PublisherService { get; }
+    public IGameService GameService { get; }
 
     #endregion
 
@@ -33,10 +35,12 @@ public  class UnitOfWork : IUnitOfWork
         #region Repo
         CategoryRepository = new CategoryRepository(dbContext);
         PublisherRepository = new PublisherRepository(dbContext);
+        GameRepository = new GameRepository(dbContext);
         #endregion
 
         CategoryService = new CategoryService(CategoryRepository);
         PublisherService = new PublisherService(PublisherRepository);
+        GameService = new GameService(GameRepository);
     }
 
     #region Helper
