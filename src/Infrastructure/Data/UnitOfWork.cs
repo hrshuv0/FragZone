@@ -12,17 +12,31 @@ public  class UnitOfWork : IUnitOfWork
     private bool _disposed;
     private readonly FragDbContext _dbContext;
 
+    #region Repository
+
     public ICategoryRepository CategoryRepository { get; }
+    public IPublisherRepository PublisherRepository { get; }
+
+    #endregion
+
+    #region Service
+
     public ICategoryService CategoryService { get; }
-    
-    
+    public IPublisherService PublisherService { get; }
+
+    #endregion
 
     public UnitOfWork(FragDbContext dbContext)
     {
         _dbContext = dbContext;
-        
+
+        #region Repo
         CategoryRepository = new CategoryRepository(dbContext);
+        PublisherRepository = new PublisherRepository(dbContext);
+        #endregion
+
         CategoryService = new CategoryService(CategoryRepository);
+        PublisherService = new PublisherService(PublisherRepository);
     }
 
     #region Helper
