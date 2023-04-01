@@ -19,4 +19,5 @@ public class FragDbContext : DbContext
 
 
     public DbSet<Category>? Categories { get; set; }
+    public DbSet<Publisher>? Publishers { get; set; }
 }
