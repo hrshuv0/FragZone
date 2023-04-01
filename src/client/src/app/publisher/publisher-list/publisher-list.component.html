@@ -1,0 +1,60 @@
+
+
+<div class="row">
+
+  <div class="col-8">
+    <div class="d-flex justify-content-between mt-3 mb-2">
+      <div>
+        <h2>Publisher List</h2>
+      </div>
+      <div>
+        <a class="btn btn-outline-success" [routerLink]="['/publisher/create']">Create New</a>
+      </div>
+
+    </div>
+    <table class="table table-dark table-bordered table-striped">
+      <thead>
+      <tr class="text-center">
+        <th width="40%">Name</th>
+        <th width="30%">Last Modified</th>
+        <th width="30%">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let publisher of publishers" class="table-row">
+        <td style="vertical-align: middle">
+          <p class="ms-2 text-uppercase">{{publisher.name}}</p>
+        </td>
+        <td>
+          <p class="ms-2 text-uppercase text-center">{{publisher.updatedTime | date:'short'}}</p>
+        </td>
+        <td>
+          <div class="text-center">
+            <button class="btn btn-sm btn-outline-info" [routerLink]="['/publisher/edit', publisher.id]">
+              <i class="fa fa-pencil me-2"></i>Edit</button>
+            <button class="btn btn-sm btn-outline-warning ms-2" (click)="deletePublisher(publisher.id)">
+              <i class="fa fa-trash-o me-2"></i>Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+    <div class="d-flex justify-content-center ">
+      <pagination [boundaryLinks]="true"
+                  [totalItems]="pagination.totalItems"
+                  [itemsPerPage]="pagination.itemsPerPage"
+                  [(ngModel)]="pagination.currentPage"
+                  (pageChanged)="pageChanged($event)"
+                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+      </pagination>
+
+    </div>
+  </div>
+  <div class="col-4">
+    <h1 class="mt-3" style="background-color: #3a6b95; ">Add later</h1>
+
+  </div>
+</div>
