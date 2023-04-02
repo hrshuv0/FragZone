@@ -18,8 +18,8 @@ namespace Infrastructure.Data.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Genre = table.Column<int>(type: "int", nullable: false),
                     Mode = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<long>(type: "bigint", nullable: true),
                     PublisherId = table.Column<long>(type: "bigint", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -28,6 +28,11 @@ namespace Infrastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Game", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Game_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Game_Publisher_PublisherId",
                         column: x => x.PublisherId,
@@ -59,6 +64,11 @@ namespace Infrastructure.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Game_CategoryId",
+                table: "Game",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Game_PublisherId",

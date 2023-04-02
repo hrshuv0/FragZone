@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(FragDbContext))]
-    [Migration("20230401163743_AddPhotoGame")]
+    [Migration("20230402110447_AddPhotoGame")]
     partial class AddPhotoGame
     {
         /// <inheritdoc />
@@ -60,11 +60,11 @@ namespace Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long?>("CategoryId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Genre")
-                        .HasColumnType("int");
 
                     b.Property<int>("Mode")
                         .HasColumnType("int");
@@ -84,6 +84,8 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("PublisherId");
 
@@ -157,9 +159,15 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Game", b =>
                 {
+                    b.HasOne("Core.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("Core.Entities.Publisher", "Publisher")
                         .WithMany()
                         .HasForeignKey("PublisherId");
+
+                    b.Navigation("Category");
 
                     b.Navigation("Publisher");
                 });
