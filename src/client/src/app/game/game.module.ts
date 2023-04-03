@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { GameListComponent } from './game-list/game-list.component';
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../_guards/auth.guard";
+import { GameListResolver } from "./game-list/game-list.resolver";
 
 const routes: Routes = [
-  { path : '', component: GameListComponent, canActivate:[AuthGuard]},
+  { path : '', component: GameListComponent, canActivate:[AuthGuard], resolve:{games:GameListResolver}},
 
 ];
 
@@ -20,6 +21,9 @@ const routes: Routes = [
   exports:[
     RouterModule,
     GameListComponent
+  ],
+  providers:[
+    GameListResolver
   ]
 })
 export class GameModule { }
