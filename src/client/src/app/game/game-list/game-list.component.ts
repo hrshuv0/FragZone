@@ -26,7 +26,13 @@ export class GameListComponent implements OnInit{
       this.pagination = data['games'].pagination;
     });
 
-    console.log(this.games);
   }
 
+  deleteDelete(id: number) {
+
+  }
+
+  pageChanged(event: any) {
+
+  }
 }

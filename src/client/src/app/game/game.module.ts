@@ -4,6 +4,8 @@ import { GameListComponent } from './game-list/game-list.component';
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../_guards/auth.guard";
 import { GameListResolver } from "./game-list/game-list.resolver";
+import { PaginationModule } from "ngx-bootstrap/pagination";
+import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
   { path : '', component: GameListComponent, canActivate:[AuthGuard], resolve:{games:GameListResolver}},
@@ -17,6 +19,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    PaginationModule,
+    FormsModule,
   ],
   exports:[
     RouterModule,
