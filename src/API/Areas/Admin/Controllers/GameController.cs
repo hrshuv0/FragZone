@@ -1,10 +1,14 @@
 ﻿using API.Controllers;
+using API.Dtos.Game;
 using API.Helpers;
 using API.Helpers.Pagination;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace API.Areas.Admin.Controllers;
 
@@ -15,11 +19,15 @@ public class GameController : BaseApiController
     #region CONFIG
 
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+    private Func<IQueryable<Game>, IIncludableQueryable<Game, object>>? _include;
 
-    public GameController(ILoggerFactory factory, IUnitOfWork unitOfWork)
+    public GameController(ILoggerFactory factory, IUnitOfWork unitOfWork, 
+        IMapper mapper)
     {
         _logger = factory.CreateLogger<GameController>();
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     #endregion
@@ -36,11 +44,17 @@ public class GameController : BaseApiController
             var totalFiltered = 0;
             var totalPages = 0;
             
-            (result, total, totalFiltered, totalPages) = await _unitOfWork.GameService.LoadAsync(c => c, null, null, null, pagination.PageNumber, pagination.PageSize);
+            _include = q => q
+                .Include(x => x.Category)
+                .Include(x => x.Publisher)!;
+
+            (result, total, totalFiltered, totalPages) = await _unitOfWork.GameService.LoadAsync(c => c, null, null, _include, pagination.PageNumber, pagination.PageSize);
             
             Response.AddPagination(pagination.PageNumber, pagination.PageSize, total, totalFiltered, totalPages);
             
-            return Ok(result);
+            var data = _mapper.Map<IList<GameDto>>(result);
+            
+            return Ok(data);
         }
         catch (Exception e)
         {

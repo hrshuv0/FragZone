@@ -1,4 +1,5 @@
-﻿using Core.Interfaces;
+﻿using API.Helpers;
+using Core.Interfaces;
 using Core.Repositories;
 using Core.Services;
 using Infrastructure.Data;
@@ -22,8 +23,8 @@ public static class ApplicationServiceExtensions
         });
 
         #endregion
-        
 
+        services.AddAutoMapper(typeof(MappingProfiles));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAuthRepository, AuthRepository>();
         services.AddScoped<IAuthService, AuthService>();
