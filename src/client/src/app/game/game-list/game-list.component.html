@@ -4,7 +4,7 @@
 
 <div class="row">
 
-  <div class="col-8">
+  <div class="col-12">
     <div class="d-flex justify-content-between mt-3 mb-2">
       <div>
         <h2>Category List</h2>
@@ -19,6 +19,8 @@
       <tr class="text-center">
         <th width="30%">Name</th>
         <th width="">Category</th>
+        <th width="">Mode</th>
+        <th width="">Publisher</th>
         <th width="">Last Modified</th>
         <th width="">Action</th>
       </tr>
@@ -29,7 +31,13 @@
           <p class="ms-2 text-uppercase">{{game.name}}</p>
         </td>
         <td>
-          <p class="ms-2 text-uppercase text-center">{{game}}</p>
+          <p class="ms-2 text-uppercase ">{{game.category}}</p>
+        </td>
+        <td>
+          <p class="ms-2 text-uppercase ">{{game.mode}}</p>
+        </td>
+        <td>
+          <p class="ms-2 text-uppercase ">{{game.publisher}}</p>
         </td>
         <td>
           <p class="ms-2 text-uppercase text-center">{{game.updatedTime | date:'short'}}</p>
@@ -59,8 +67,5 @@
 
     </div>
   </div>
-  <div class="col-4">
-    <h1 class="mt-3" style="background-color: #3a6b95; ">Add later</h1>
 
-  </div>
 </div>

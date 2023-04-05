@@ -10,4 +10,7 @@ public class GameDto
     
     public long? PublisherId { get; set; }
     public string? Publisher { get; set; }
+    
+    public DateTime CreatedTime { get; set; }
+    public DateTime UpdatedTime { get; set; }
 }

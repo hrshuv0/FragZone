@@ -5,8 +5,8 @@ export interface IGame {
   id: number,
   name: string,
   mode: string,
-  category: ICategory,
-  publisher: IPublisher,
+  category: string,
+  publisher: string,
   updatedTime: Date,
   status: string
 
