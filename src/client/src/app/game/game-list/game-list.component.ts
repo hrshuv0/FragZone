@@ -25,14 +25,29 @@ export class GameListComponent implements OnInit{
       this.games = data['games'].result;
       this.pagination = data['games'].pagination;
     });
-
   }
 
-  deleteDelete(id: number) {
+  getGameList() {
+    this.gameService.getGameList(this.pagination.currentPage, this.pagination.itemsPerPage).subscribe(data =>{
+      this.games = data.result;
+    }, error => {
+      console.log(error);
+    });
+  }
 
+  deleteGame(id: number) {
+    this.alertify.confirm("Are you sure want to delete?", () =>{
+      this.gameService.deleteGame(id).subscribe(() =>{
+        this.getGameList();
+        this.alertify.warning("Deleted Successfully");
+      }, error => {
+        this.alertify.error(error);
+      });
+    });
   }
 
   pageChanged(event: any) {
-
+    this.pagination.currentPage = event.page;
+    this.getGameList();
   }
 }
