@@ -1,0 +1,56 @@
+﻿[
+  {
+    "Name": "Riot Games",
+    "CreatedTime": "2018-01-24",
+    "UpdatedTime": "2021-10-28",
+    "Status": 1
+  },
+  {
+    "Name": "Valve Corporation",
+    "CreatedTime": "2015-07-18",
+    "UpdatedTime": "2022-05-28",
+    "Status": 0
+  },
+  {
+    "Name": "Epic Games",
+    "CreatedTime": "2016-01-04",
+    "UpdatedTime": "2022-10-08",
+    "Status": 0
+  },
+  {
+    "Name": "PUBG Corporation",
+    "CreatedTime": "2016-07-18",
+    "UpdatedTime": "2020-07-05",
+    "Status": 0
+  },
+  {
+    "Name": "Activision",
+    "CreatedTime": "2016-06-24",
+    "UpdatedTime": "2021-03-22",
+    "Status": 0
+  },
+  {
+    "Name": "Electronic Arts",
+    "CreatedTime": "2018-10-15",
+    "UpdatedTime": "2021-07-11",
+    "Status": 0
+  },
+  {
+    "Name": "Garena",
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Tencent Games",
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Supercell",
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  }
+]

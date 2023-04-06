@@ -1,0 +1,119 @@
+﻿[
+  {
+    "Name": "League of Legends",
+    "CategoryId": 2,
+    "Mode": 1,
+    "PublisherId": 1,
+    "CreatedTime": "2018-01-24",
+    "UpdatedTime": "2021-10-28",
+    "Status": 1
+  },
+  {
+    "Name": "Dota 2",
+    "CategoryId": 2,
+    "Mode": 1,
+    "PublisherId": 2,
+    "CreatedTime": "2015-07-18",
+    "UpdatedTime": "2022-05-28",
+    "Status": 0
+  },
+  {
+    "Name": "Counter-Strike: Global Offensive",
+    "CategoryId": 1,
+    "Mode": 1,
+    "PublisherId": 2,
+    "CreatedTime": "2016-01-04",
+    "UpdatedTime": "2022-10-08",
+    "Status": 0
+  },
+  {
+    "Name": "Fortnite",
+    "CategoryId": 4,
+    "Mode": 1,
+    "PublisherId": 3,
+    "CreatedTime": "2016-07-18",
+    "UpdatedTime": "2020-07-05",
+    "Status": 0
+  },
+  {
+    "Name": "PlayerUnknown's Battlegrounds",
+    "CategoryId": 4,
+    "Mode": 1,
+    "PublisherId": 4,
+    "CreatedTime": "2016-06-24",
+    "UpdatedTime": "2021-03-22",
+    "Status": 0
+  },
+  {
+    "Name": "Call of Duty: Modern Warfare",
+    "CategoryId": 1,
+    "Mode": 1,
+    "PublisherId": 5,
+    "CreatedTime": "2018-10-15",
+    "UpdatedTime": "2021-07-11",
+    "Status": 0
+  },
+  {
+    "Name": "FIFA 21",
+    "CategoryId": 10,
+    "Mode": 1,
+    "PublisherId": 6,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Apex Legends",
+    "CategoryId": 4,
+    "Mode": 1,
+    "PublisherId": 6,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Valorant",
+    "CategoryId": 1,
+    "Mode": 1,
+    "PublisherId": 1,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Clash Royale",
+    "CategoryId": 5,
+    "Mode": 2,
+    "PublisherId": 9,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Free Fire",
+    "CategoryId": 4,
+    "Mode": 1,
+    "PublisherId": 7,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "PUBG Mobile",
+    "CategoryId": 4,
+    "Mode": 1,
+    "PublisherId": 8,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  },
+  {
+    "Name": "Arena of Valor",
+    "CategoryId": 5,
+    "Mode": 1,
+    "PublisherId": 8,
+    "CreatedTime": "2015-09-12",
+    "UpdatedTime": "2020-05-09",
+    "Status": 0
+  }
+]
