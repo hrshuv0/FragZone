@@ -38,7 +38,8 @@ public static class ApplicationServiceExtensions
             
             var context = services.BuildServiceProvider().GetRequiredService<FragDbContext>();
             await context.Database.MigrateAsync();
-            
+
+            await AppDbInitializer.SeedAsync(context, loggerFactory);
         }
         catch (Exception e)
         {
