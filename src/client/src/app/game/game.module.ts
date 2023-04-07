@@ -5,22 +5,26 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../_guards/auth.guard";
 import { GameListResolver } from "./game-list/game-list.resolver";
 import { PaginationModule } from "ngx-bootstrap/pagination";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { GameCreateComponent } from './game-create/game-create.component';
 
 const routes: Routes = [
   { path : '', component: GameListComponent, canActivate:[AuthGuard], resolve:{games:GameListResolver}},
+  { path : 'create', component: GameCreateComponent, canActivate:[AuthGuard]},
 
 ];
 
 @NgModule({
   declarations: [
-    GameListComponent
+    GameListComponent,
+    GameCreateComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     PaginationModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     RouterModule,

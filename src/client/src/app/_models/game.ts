@@ -1,6 +1,3 @@
-import { ICategory } from "./category";
-import { IPublisher } from "./publisher";
-
 export interface IGame {
   id: number,
   name: string,
