@@ -1,4 +1,6 @@
 ﻿using Core.Entities.Identity;
+using Core.Entities.Photos;
+using Infrastructure.Data.Config;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +11,16 @@ public class FragIdentityDbContext : IdentityDbContext<ApplicationUser>
     public FragIdentityDbContext(DbContextOptions<FragIdentityDbContext> options) : base(options)
     {
     }
+    
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.ApplyConfiguration(new PhotoConfiguration());
+        
+        base.OnModelCreating(builder);
+    }
 
 
     public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
+    public DbSet<Photo> Photos { get; set; }
+
 }

@@ -1,4 +1,5 @@
-﻿using Core.Enums;
+﻿using Core.Entities.Photos;
+using Core.Enums;
 using Microsoft.AspNetCore.Identity;
 
 namespace Core.Entities.Identity;
@@ -14,6 +15,8 @@ public class ApplicationUser : IdentityUser
     public DateTime CreatedTime { get; set; }
     public DateTime LastActive { get; set; }
     public StatusUser Status { get; set; }
+
+    public IList<Photo>? Photos { get; set; }
 
     public ApplicationUser()
     {

@@ -49,84 +49,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Category", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Entities.Game", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("CategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Mode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<long?>("PublisherId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PublisherId");
-
-                    b.ToTable("Game", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Entities.Photos.PhotoGame", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("GameId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PublicId")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Url")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("PhotoGame", (string)null);
-                });
-
             modelBuilder.Entity("Core.Entities.Publisher", b =>
                 {
                     b.Property<long>("Id")
@@ -152,37 +74,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publisher", (string)null);
-                });
-
-            modelBuilder.Entity("Core.Entities.Game", b =>
-                {
-                    b.HasOne("Core.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("Core.Entities.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId");
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("Core.Entities.Photos.PhotoGame", b =>
-                {
-                    b.HasOne("Core.Entities.Game", "Game")
-                        .WithMany("PhotoList")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("Core.Entities.Game", b =>
-                {
-                    b.Navigation("PhotoList");
                 });
 #pragma warning restore 612, 618
         }
