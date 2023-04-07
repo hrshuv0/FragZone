@@ -43,13 +43,22 @@ export class GameCreateComponent implements OnInit {
   createGameForm(){
     this.gameForm = this.fb.group({
       "name": new FormControl('', Validators.required),
-      "categoryId": new FormControl('', Validators.required),
-      "publisherId": new FormControl(''),
-      "mode": new FormControl('', Validators.required),
+      "categoryId": new FormControl('0', Validators.required),
+      "publisherId": new FormControl('0'),
+      "mode": new FormControl('0', Validators.required)
     });
   }
 
   create() {
+    this.game = Object.assign({}, this.gameForm.value);
+    console.log(this.game);
+
+    this.gameService.createGame(this.game).subscribe(() =>{
+      this.alertify.success("Game Created Successfully");
+      this.router.navigate(['/game']);
+    }, error => {
+      this.alertify.error(error);
+    });
 
   }
 

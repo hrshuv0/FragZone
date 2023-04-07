@@ -19,7 +19,7 @@
     </div>
 
     <div class="form__group field mt-3" >
-      <select class="form__field">
+      <select class="form__field" formControlName="categoryId">
         <option value="0">Select Category</option>
         <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
       </select>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form__group field mt-3" >
-      <select class="form__field">
+      <select class="form__field" formControlName="mode">
         <option value="0">Select Mode</option>
         <option *ngFor="let mode of gameModes" value="{{mode.value}}">{{mode.key}}</option>
       </select>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="form__group field mt-3" >
-      <select class="form__field">
+      <select class="form__field" formControlName="publisherId">
         <option value="0">Select Publisher</option>
         <option *ngFor="let publisher of publishers" value="{{publisher.id}}">{{publisher.name}}</option>
       </select>
