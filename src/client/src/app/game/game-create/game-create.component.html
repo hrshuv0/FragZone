@@ -28,6 +28,14 @@
 
     <div class="form__group field mt-3" >
       <select class="form__field">
+        <option value="0">Select Mode</option>
+        <option *ngFor="let mode of gameModes" value="{{mode.value}}">{{mode.key}}</option>
+      </select>
+      <label class="form__label">Mode</label>
+    </div>
+
+    <div class="form__group field mt-3" >
+      <select class="form__field">
         <option value="0">Select Publisher</option>
         <option *ngFor="let publisher of publishers" value="{{publisher.id}}">{{publisher.name}}</option>
       </select>

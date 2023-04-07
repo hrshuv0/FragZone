@@ -8,6 +8,8 @@ import { PublisherService } from "../../_services/publisher.service";
 import { CategoryService } from "../../_services/category.service";
 import { ICategory } from "../../_models/category";
 import { IPublisher } from "../../_models/publisher";
+import { CommonHelperService } from "../../_services/common-helper.service";
+import { IEnum } from "../../core/common/enum";
 
 @Component({
   selector: 'app-game-create',
@@ -20,17 +22,20 @@ export class GameCreateComponent implements OnInit {
   gameForm!: FormGroup;
   categories!: ICategory[];
   publishers!: IPublisher[];
+  gameModes!: IEnum[];
 
   constructor(private fb: FormBuilder,
               private gameService: GameService,
               private categoryService: CategoryService,
               private publisherService: PublisherService,
+              private commonHelperService: CommonHelperService,
               private alertify: AlertifyService,
               private router: Router) { }
 
   ngOnInit(): void {
     this.loadCategory();
     this.loadPublisher();
+    this.loadGameMode();
     this.createGameForm();
 
   }
@@ -64,6 +69,14 @@ export class GameCreateComponent implements OnInit {
     });
   }
 
+  loadGameMode(){
+    this.commonHelperService.getGameModes().subscribe(data =>{
+      this.gameModes = data;
+    }, error => {
+      console.log(error);
+    });
+
+  }
 
 
 }

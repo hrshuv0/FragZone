@@ -6,10 +6,10 @@ namespace API.Controllers;
 
 public class CommonHelperController : BaseApiController
 {
-    [HttpGet("game-mode")]
+    [HttpGet("game-modes")]
     public IActionResult GetGameModes()
     {
-        var gameModes =  FragHelper.LoadEnumToDictionary<Mode>();
+        var gameModes =  FragHelper.LoadEnumToValue<Mode>();
 
         return Ok(gameModes);
     }
