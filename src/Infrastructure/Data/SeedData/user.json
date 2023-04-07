@@ -1,0 +1,52 @@
+﻿[
+  {
+    "UserName": "admin",
+    "Email": "admin@email.com",
+    "DateOfBirth": "2003-06-14",
+    "Password": "1234",
+    "DisplayName": "Admin",
+    "InGameName": "admin",
+    "CreatedTime": "2017-01-21",
+    "LastActive": "2017-01-21"
+  },
+  {
+    "UserName": "shuvo",
+    "Email": "shuvo@email.com",
+    "DateOfBirth": "2002-11-10",
+    "Password": "1234",
+    "DisplayName": "Shuvo",
+    "InGameName": "shuvo",
+    "CreatedTime": "2017-06-16",
+    "LastActive": "2017-06-16"
+  },
+  {
+    "UserName": "glactus",
+    "Email": "glactus@email.com",
+    "DateOfBirth": "1999-08-11",
+    "Password": "1234",
+    "DisplayName": "GlactuS",
+    "InGameName": "GlactuS",
+    "CreatedTime": "2020-12-12",
+    "LastActive": "2020-12-12"
+  },
+  {
+    "UserName": "moderator",
+    "Email": "moderator@email.com",
+    "DateOfBirth": "1999-05-02",
+    "Password": "1234",
+    "DisplayName": "Moderator",
+    "InGameName": "moderator",
+    "CreatedTime": "2018-04-08",
+    "LastActive": "2018-04-08"
+  },
+  {
+    "UserName": "player",
+    "Email": "player@email.com",
+    "DateOfBirth": "1996-02-16",
+    "Password": "1234",
+    "DisplayName": "Mr Player",
+    "InGameName": "player",
+    "CreatedTime": "2021-08-21",
+    "LastActive": "2021-08-21"
+  }
+]

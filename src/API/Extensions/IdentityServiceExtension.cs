@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Core.Entities.Identity;
+using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -57,6 +58,8 @@ public static class IdentityServiceExtension
             
             var context = services.BuildServiceProvider().GetRequiredService<FragIdentityDbContext>();
             await context.Database.MigrateAsync();
+            
+            await SeedUserData.SeedUserAsync(context, loggerFactory);
 
         }
         catch (Exception ex)
