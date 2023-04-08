@@ -7,7 +7,13 @@
     "DisplayName": "Admin",
     "InGameName": "admin",
     "CreatedTime": "2017-01-21",
-    "LastActive": "2017-01-21"
+    "LastActive": "2017-01-21",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/95.jpg",
+        "IsMain": true
+      }
+    ]
   },
   {
     "UserName": "shuvo",
@@ -17,7 +23,13 @@
     "DisplayName": "Shuvo",
     "InGameName": "shuvo",
     "CreatedTime": "2017-06-16",
-    "LastActive": "2017-06-16"
+    "LastActive": "2017-06-16",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/13.jpg",
+        "IsMain": true
+      }
+    ]
   },
   {
     "UserName": "glactus",
@@ -27,7 +39,13 @@
     "DisplayName": "GlactuS",
     "InGameName": "GlactuS",
     "CreatedTime": "2020-12-12",
-    "LastActive": "2020-12-12"
+    "LastActive": "2020-12-12",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/83.jpg",
+        "IsMain": true
+      }
+    ]
   },
   {
     "UserName": "moderator",
@@ -37,7 +55,13 @@
     "DisplayName": "Moderator",
     "InGameName": "moderator",
     "CreatedTime": "2018-04-08",
-    "LastActive": "2018-04-08"
+    "LastActive": "2018-04-08",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/33.jpg",
+        "IsMain": true
+      }
+    ]
   },
   {
     "UserName": "player",
@@ -47,6 +71,12 @@
     "DisplayName": "Mr Player",
     "InGameName": "player",
     "CreatedTime": "2021-08-21",
-    "LastActive": "2021-08-21"
+    "LastActive": "2021-08-21",
+    "Photos": [
+      {
+        "Url": "https://randomuser.me/api/portraits/men/63.jpg",
+        "IsMain": true
+      }
+    ]
   }
 ]
