@@ -1,8 +1,10 @@
 ﻿using API.Dtos.Game;
 using API.Dtos.User;
 using AutoMapper;
+using Core.Dtos.PhotosDto;
 using Core.Entities;
 using Core.Entities.Identity;
+using Core.Entities.Photos;
 
 namespace API.Helpers;
 
@@ -17,7 +19,16 @@ public class MappingProfiles : Profile
 
 
 
-        CreateMap<ApplicationUser, UserListDto>();
-        CreateMap<ApplicationUser, UserDetailsDto>();
+        CreateMap<ApplicationUser, UserListDto>()
+            .ForMember(dest => dest.PhotoUrl,
+                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url));
+        
+        CreateMap<ApplicationUser, UserDetailsDto>()
+            .ForMember(dest => dest.PhotoUrl,
+                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url));
+
+        
+        
+        CreateMap<Photo, PhotoDetailsDto>();
     }
 }

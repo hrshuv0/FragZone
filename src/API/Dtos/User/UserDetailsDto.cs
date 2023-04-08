@@ -1,4 +1,4 @@
-﻿using Core.Entities.Photos;
+﻿using Core.Dtos.PhotosDto;
 
 namespace API.Dtos.User;
 
@@ -15,6 +15,6 @@ public class UserDetailsDto
     public DateTime LastActive { get; set; }
     public string? Status { get; set; }
     public string? PhotoUrl { get; set; }
-    public IList<Photo>? Photos { get; set; }
+    public IList<PhotoDetailsDto>? Photos { get; set; }
 
 }

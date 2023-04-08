@@ -11,10 +11,11 @@ namespace API.Controllers;
 public class FragUserController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
-    private IMapper _mapper;
+    private readonly IMapper _mapper;
 
-    public FragUserController(IUnitOfWork unitOfWork, IMapper mapper)
+    public FragUserController(ILoggerFactory factory, IUnitOfWork unitOfWork, IMapper mapper)
     {
+        _logger = factory.CreateLogger<FragUserController>();
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
