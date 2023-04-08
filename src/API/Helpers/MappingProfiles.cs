@@ -5,6 +5,7 @@ using Core.Dtos.PhotosDto;
 using Core.Entities;
 using Core.Entities.Identity;
 using Core.Entities.Photos;
+using Infrastructure.Utility;
 
 namespace API.Helpers;
 
@@ -21,11 +22,13 @@ public class MappingProfiles : Profile
 
         CreateMap<ApplicationUser, UserListDto>()
             .ForMember(dest => dest.PhotoUrl,
-                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url));
+                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
+            .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
         
         CreateMap<ApplicationUser, UserDetailsDto>()
             .ForMember(dest => dest.PhotoUrl,
-                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url));
+                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
+            .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
 
         
         
