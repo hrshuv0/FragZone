@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Json.Serialization;
 using API.Extensions;
 using Core.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
@@ -15,7 +16,11 @@ builder.Host.UseSerilog((ctx, lc) => lc
     .WriteTo.Console()
     .ReadFrom.Configuration(builder.Configuration));
 
-builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddControllers();
+builder.Services.AddMvc().AddJsonOptions(opt =>
+{
+    opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
