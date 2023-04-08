@@ -1,13 +1,14 @@
 ﻿using System.Text.Json;
 using Core.Entities.Identity;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data;
 
 public static class SeedUserData
 {
-    public static async Task SeedUserAsync(FragIdentityDbContext context, ILoggerFactory loggerFactory)
+    public static async Task SeedUserAsync(FragIdentityDbContext context, UserManager<ApplicationUser> userManager, ILoggerFactory loggerFactory)
     {
         try
         {
@@ -22,7 +23,8 @@ public static class SeedUserData
                 {
                     user.UserName = user.UserName!.ToLower();
                     user.Email = user.Email!.ToLower();
-                    await context.Users.AddAsync(user);
+
+                    await userManager.CreateAsync(user, "1234");
                 }
                 
                 await context.SaveChangesAsync();
@@ -32,7 +34,7 @@ public static class SeedUserData
         catch (Exception e)
         {
             var logger = loggerFactory.CreateLogger<AppDbInitializer>();
-            logger.LogError(e.Message);
+            logger.LogError(e, "An error occurred while seeding the database");
         }
         
     }

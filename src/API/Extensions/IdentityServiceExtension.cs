@@ -59,7 +59,9 @@ public static class IdentityServiceExtension
             var context = services.BuildServiceProvider().GetRequiredService<FragIdentityDbContext>();
             await context.Database.MigrateAsync();
             
-            await SeedUserData.SeedUserAsync(context, loggerFactory);
+            var userManager = services.BuildServiceProvider().GetRequiredService<UserManager<ApplicationUser>>();
+            
+            await SeedUserData.SeedUserAsync(context, userManager, loggerFactory);
 
         }
         catch (Exception ex)
