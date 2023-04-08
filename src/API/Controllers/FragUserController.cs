@@ -1,4 +1,6 @@
-﻿using API.Helpers.Pagination;
+﻿using API.Dtos.User;
+using API.Helpers.Pagination;
+using AutoMapper;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +11,12 @@ namespace API.Controllers;
 public class FragUserController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
+    private IMapper _mapper;
 
-    public FragUserController(IUnitOfWork unitOfWork)
+    public FragUserController(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
 
@@ -23,7 +27,27 @@ public class FragUserController : BaseApiController
         {
             var result = await _unitOfWork.UserService.Load(paginationParams.PageNumber, paginationParams.PageSize);
 
-            return Ok(result);
+            var data = _mapper.Map<IList<UserListDto>>(result);
+            
+            return Ok(data);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error while getting users");
+        }
+
+        return BadRequest("Error while getting users");
+    }
+    [HttpGet("users/{id}")]
+    public async Task<IActionResult> GetUsers(string id)
+    {
+        try
+        {
+            var result = await _unitOfWork.UserService.Get(id);
+
+            var data = _mapper.Map<UserDetailsDto>(result);
+            
+            return Ok(data);
         }
         catch (Exception e)
         {
