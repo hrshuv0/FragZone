@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Core.Repositories;
 using Core.Services;
+using Infrastructure.Identity;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -11,12 +12,14 @@ public  class UnitOfWork : IUnitOfWork
 {
     private bool _disposed;
     private readonly FragDbContext _dbContext;
+    private readonly FragIdentityDbContext _identityDbContext;
 
     #region Repository
 
     public ICategoryRepository CategoryRepository { get; }
     public IPublisherRepository PublisherRepository { get; }
     public IGameRepository GameRepository { get; }
+    public IRepository Repository { get; }
 
     #endregion
 
@@ -25,22 +28,26 @@ public  class UnitOfWork : IUnitOfWork
     public ICategoryService CategoryService { get; }
     public IPublisherService PublisherService { get; }
     public IGameService GameService { get; }
+    public IUserService UserService { get; }
 
     #endregion
 
-    public UnitOfWork(FragDbContext dbContext)
+    public UnitOfWork(FragDbContext dbContext, FragIdentityDbContext identityDbContext)
     {
         _dbContext = dbContext;
+        _identityDbContext = identityDbContext;
 
         #region Repo
         CategoryRepository = new CategoryRepository(dbContext);
         PublisherRepository = new PublisherRepository(dbContext);
         GameRepository = new GameRepository(dbContext);
+        Repository = new Repository(_identityDbContext);
         #endregion
 
         CategoryService = new CategoryService(CategoryRepository);
         PublisherService = new PublisherService(PublisherRepository);
         GameService = new GameService(GameRepository);
+        UserService = new UserService(Repository);
     }
 
     #region Helper

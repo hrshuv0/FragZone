@@ -21,6 +21,6 @@ public class FragIdentityDbContext : IdentityDbContext<ApplicationUser>
 
 
     public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
-    public DbSet<Photo> Photos { get; set; }
+    public DbSet<Photo>? Photos { get; set; }
 
 }

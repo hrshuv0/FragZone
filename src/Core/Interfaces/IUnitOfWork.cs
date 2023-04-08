@@ -11,6 +11,7 @@ public interface IUnitOfWork : IDisposable
     ICategoryRepository CategoryRepository { get; }
     IPublisherRepository PublisherRepository { get; }
     IGameRepository GameRepository { get; }
+    IRepository Repository { get; }
 
     #endregion
 
@@ -19,6 +20,7 @@ public interface IUnitOfWork : IDisposable
     ICategoryService CategoryService { get; }
     IPublisherService PublisherService { get; }
     IGameService GameService { get; }
+    IUserService UserService { get; }
 
     #endregion
 
