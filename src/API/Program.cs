@@ -1,6 +1,8 @@
+using System.Configuration;
 using System.Net;
 using System.Text.Json.Serialization;
 using API.Extensions;
+using API.Seetings;
 using Core.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Serilog;
@@ -31,6 +33,8 @@ builder.Services.AddSwaggerGen();
 var config = builder.Configuration;
 await builder.Services.AddApplicationServices(config);
 await builder.Services.AddIdentityServices(config);
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 builder.Services.AddCors();
 

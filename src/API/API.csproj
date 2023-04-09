@@ -28,7 +28,6 @@
       <Folder Include="Areas\Moderator\Data" />
       <Folder Include="Areas\Moderator\Models" />
       <Folder Include="Areas\Moderator\Views" />
-      <Folder Include="Areas\Player\Controllers" />
       <Folder Include="Areas\Player\Data" />
       <Folder Include="Areas\Player\Models" />
       <Folder Include="Areas\Player\Views" />

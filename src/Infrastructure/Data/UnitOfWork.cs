@@ -62,6 +62,11 @@ public  class UnitOfWork : IUnitOfWork
         await _dbContext.SaveChangesAsync();
     }
 
+    public async Task<bool> SaveAllAsync()
+    {
+        return await _identityDbContext.SaveChangesAsync() > 0;
+    }
+
     public async Task<IDbContextTransaction> BeginTransaction()
     {
         return await _dbContext.Database.BeginTransactionAsync();

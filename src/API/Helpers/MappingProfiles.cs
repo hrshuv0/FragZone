@@ -33,5 +33,7 @@ public class MappingProfiles : Profile
         
         
         CreateMap<Photo, PhotoDetailsDto>();
+        CreateMap<Photo, PhotoReturnDto>();
+        CreateMap<PhotoCreationDto, Photo>();
     }
 }
