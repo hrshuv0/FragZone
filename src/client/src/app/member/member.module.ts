@@ -4,6 +4,8 @@ import { MemberEditComponent } from './member-edit/member-edit.component';
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../_guards/auth.guard";
 import { MemberEditResolver } from "./member-edit/member-edit.resolver";
+import { FormsModule } from "@angular/forms";
+import { TabsModule } from "ngx-bootstrap/tabs";
 
 
 const routes: Routes = [
@@ -17,7 +19,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    TabsModule
   ],
   exports:[
     RouterModule
