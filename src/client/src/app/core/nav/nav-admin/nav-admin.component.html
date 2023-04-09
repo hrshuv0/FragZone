@@ -81,7 +81,7 @@
             {{authService.decodedToken!.unique_name | titlecase}}
           </a>
           <ul class="dropdown-menu mt-3" *dropdownMenu>
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/member']">Profile</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" (click)="logout()">Log out</a></li>

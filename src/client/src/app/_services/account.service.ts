@@ -15,6 +15,11 @@ export class AccountService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
+  currentUser!: IUser | null;
+  photoUrl = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this.photoUrl.asObservable();
+
+
   private currentUserSource = new BehaviorSubject<IUser>(null!);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -27,8 +32,8 @@ export class AccountService {
         if(user){
           localStorage.setItem('token', user.token);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
-          console.log(this.decodedToken);
-          // console.log(user);
+          this.currentUser = user.user;
+          console.log(this.currentUser);
         }
       })
     );

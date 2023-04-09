@@ -13,11 +13,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.baseUrl + 'users');
+    return this.http.get<IUser[]>(this.baseUrl + 'fragUser/users');
   }
 
   getUser(id: string): Observable<IUser> {
-    return this.http.get<IUser>(this.baseUrl + 'users/' + id);
+    return this.http.get<IUser>(this.baseUrl + 'fragUser/users/' + id);
   }
 
 }
