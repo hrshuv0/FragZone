@@ -19,7 +19,12 @@ public static class ApplicationServiceExtensions
 
         services.AddDbContext<FragDbContext>(options =>
         {
-            options.UseSqlServer(connectionString);
+            options.UseSqlServer(connectionString, sqlServerOption => 
+                sqlServerOption.EnableRetryOnFailure(
+                    maxRetryCount:5, 
+                    maxRetryDelay:TimeSpan.FromSeconds(10), 
+                    errorNumbersToAdd:null
+                ));
         });
 
         #endregion

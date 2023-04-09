@@ -17,7 +17,12 @@ public static class IdentityServiceExtension
 
         services.AddDbContext<FragIdentityDbContext>(opt =>
         {
-            opt.UseSqlServer(identityConnection);
+            opt.UseSqlServer(identityConnection, sqlServerOption => 
+                sqlServerOption.EnableRetryOnFailure(
+                    maxRetryCount:5, 
+                    maxRetryDelay:TimeSpan.FromSeconds(10), 
+                    errorNumbersToAdd:null)
+                );
         });
 
         services.AddIdentity<ApplicationUser, IdentityRole>(options =>
