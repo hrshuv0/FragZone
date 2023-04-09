@@ -8,6 +8,7 @@ const routes: Routes = [
   { path : 'publisher', loadChildren: () => import('./publisher/publisher.module').then(mod => mod.PublisherModule)},
   { path : 'game', loadChildren: () => import('./game/game.module').then(mod => mod.GameModule)},
 
+  { path : 'member', loadChildren : () => import('./member/member.module').then(mod => mod.MemberModule)},
   { path : 'account', loadChildren : () => import('./account/account.module').then(mod => mod.AccountModule)},
   { path : '**', redirectTo: '', pathMatch: 'full'}
 ];

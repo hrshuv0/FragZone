@@ -4,6 +4,8 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { PaginationModule } from "ngx-bootstrap/pagination";
 import { PublisherModule } from "./publisher/publisher.module";
 import { GameModule } from "./game/game.module";
+import { MemberModule } from "./member/member.module";
+
 
 import { AppComponent } from './app.component';
 import { CategoryModule } from "./category/category.module";
@@ -32,6 +34,7 @@ export function tokenGetter(){
     PublisherModule,
     GameModule,
     CoreModule,
+    MemberModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
