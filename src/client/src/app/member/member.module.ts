@@ -7,6 +7,7 @@ import { MemberEditResolver } from "./member-edit/member-edit.resolver";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
+import { FileUploadModule } from "ng2-file-upload";
 
 
 const routes: Routes = [
@@ -19,12 +20,13 @@ const routes: Routes = [
     MemberEditComponent,
     PhotoEditorComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    FormsModule,
-    TabsModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        FormsModule,
+        TabsModule,
+        FileUploadModule
+    ],
   exports:[
     RouterModule
   ],
