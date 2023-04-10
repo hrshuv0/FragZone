@@ -6,6 +6,7 @@ import { AuthGuard } from "../_guards/auth.guard";
 import { MemberEditResolver } from "./member-edit/member-edit.resolver";
 import { FormsModule } from "@angular/forms";
 import { TabsModule } from "ngx-bootstrap/tabs";
+import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent
   ],
   imports: [
     CommonModule,
