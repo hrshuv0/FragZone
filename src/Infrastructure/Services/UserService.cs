@@ -58,4 +58,9 @@ public class UserService : IUserService
     {
         return _entityRepository.GetMainPhoto(userId);
     }
+
+    public Task<Photo> GetMainPhotoForUser(string userId)
+    {
+        return _entityRepository.GetMainPhotoForUser(userId);
+    }
 }

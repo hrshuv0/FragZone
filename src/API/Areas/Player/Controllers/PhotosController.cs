@@ -105,4 +105,41 @@ public class PhotosController : BaseApiController
 
         return BadRequest("Could not add the photo");
     }
+    
+    [HttpPost("{id}/setMain/{userId}")]
+    public async Task<IActionResult> SetMainPhoto(string id, string userId)
+    {
+        try
+        {
+            if (HttpContext.User.GetUserId() != userId)
+                return Unauthorized();
+        
+            var user = await _unitOfWork.UserService.Get(userId);
+            if (user == null)
+                return NotFound("User not found");
+
+            var photoFromRepo = await _unitOfWork.UserService.GetPhoto(id);
+            if (photoFromRepo == null)
+                return NotFound("Photo not found");
+
+            if (photoFromRepo.IsMain)
+                return BadRequest("This is already the main photo");
+
+            var currentMainPhoto = await _unitOfWork.UserService.GetMainPhotoForUser(userId);
+            currentMainPhoto.IsMain = false;
+            photoFromRepo.IsMain = true;
+
+            if (await _unitOfWork.SaveAllAsync())
+                return NoContent();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error while setting main photo");
+        }
+
+        return BadRequest("Could not set photo to main");
+    }
+    
+    
+    
 }

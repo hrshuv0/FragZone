@@ -70,4 +70,11 @@ public class Repository : IRepository
 
         return photo!;
     }
+
+    public async Task<Photo> GetMainPhotoForUser(string userId)
+    {
+        var photo = await _context!.Photos!.Where(u => u.AppUserId == userId).FirstOrDefaultAsync(p => p.IsMain);
+        
+        return photo!;
+    }
 }

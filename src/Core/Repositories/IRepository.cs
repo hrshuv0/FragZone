@@ -13,4 +13,5 @@ public interface IRepository
 
     Task<Photo> GetPhoto(string id);
     Task<Photo> GetMainPhoto(string userId);
+    Task<Photo> GetMainPhotoForUser(string userId);
 } 
