@@ -4,7 +4,8 @@ import { BehaviorSubject, map} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { IUser } from "../_models/user";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import {AlertifyService} from "./alertify.service";
+import { AlertifyService } from "./alertify.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,9 @@ export class AccountService {
   currentPhotoUrl = this.photoUrl.asObservable();
 
 
-  constructor(private http: HttpClient, private alertify: AlertifyService) { }
+  constructor(private http: HttpClient,
+              private alertify: AlertifyService,
+              private router: Router) { }
 
   changeMemberPhoto(photoUrl: string) {
     this.photoUrl.next(photoUrl);
@@ -33,6 +36,7 @@ export class AccountService {
         const user = response;
         if(user){
           localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
           this.changeMemberPhoto(this.currentUser?.photoUrl!);
@@ -43,7 +47,12 @@ export class AccountService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.decodedToken = null;
+    this.currentUser = null;
     this.alertify.message('logged out');
+    this.router.navigate([''])
+      .then(r => console.log(r));
   }
 
   loggedIn(){
