@@ -13,6 +13,7 @@ import { AlertifyService } from "../../_services/alertify.service";
 })
 export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
+  currentMain!: IPhoto;
 
   @Input() photos!: IPhoto[] | undefined;
   @Output() getMemberPhotoChange = new EventEmitter<string>();
@@ -66,7 +67,10 @@ export class PhotoEditorComponent implements OnInit {
 
   setMainPhoto(photo: IPhoto) {
     this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
-      console.log('Successfully set to main');
+      this.currentMain = this.photos?.filter(p => p.isMain === true)[0]!;
+      this.currentMain.isMain = false;
+      photo.isMain = true;
+      this.getMemberPhotoChange.emit(photo.url);
     }, error => {
       this.alertify.error(error);
     })
