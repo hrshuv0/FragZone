@@ -1,6 +1,7 @@
 ﻿using API.Dtos.Game;
 using API.Dtos.User;
 using AutoMapper;
+using Core.Dtos.Identity;
 using Core.Dtos.PhotosDto;
 using Core.Entities;
 using Core.Entities.Identity;
@@ -26,6 +27,11 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
         
         CreateMap<ApplicationUser, UserDetailsDto>()
+            .ForMember(dest => dest.PhotoUrl,
+                opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
+            .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+        
+        CreateMap<ApplicationUser, UserDetailsForReturnDto>()
             .ForMember(dest => dest.PhotoUrl,
                 opt => opt.MapFrom(src => src.Photos!.FirstOrDefault(x => x.IsMain)!.Url))
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));

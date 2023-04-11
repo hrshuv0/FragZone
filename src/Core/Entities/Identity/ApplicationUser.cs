@@ -1,5 +1,4 @@
-﻿using Core.Dtos.PhotosDto;
-using Core.Entities.Photos;
+﻿using Core.Entities.Photos;
 using Core.Enums;
 using Microsoft.AspNetCore.Identity;
 

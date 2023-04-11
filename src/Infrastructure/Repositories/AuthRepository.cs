@@ -36,6 +36,7 @@ public class AuthRepository : IAuthRepository
     public async Task<ApplicationUser> Login(string username, string password)
     {
         var user = await _userManager.Users
+            .Include(x => x.Photos)
             .FirstOrDefaultAsync(u => u.UserName == username) ?? await _userManager.Users
             .FirstOrDefaultAsync(u => u.Email == username);
 

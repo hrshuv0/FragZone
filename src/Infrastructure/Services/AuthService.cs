@@ -1,4 +1,5 @@
-﻿using Core.Common.Exceptions;
+﻿using AutoMapper;
+using Core.Common.Exceptions;
 using Core.Dtos.Identity;
 using Core.Entities.Identity;
 using Core.Repositories;
@@ -9,10 +10,12 @@ namespace Infrastructure.Services;
 public class AuthService : IAuthService
 {
     private readonly IAuthRepository _authRepository;
+    private IMapper _mapper;
 
-    public AuthService(IAuthRepository authRepository)
+    public AuthService(IAuthRepository authRepository, IMapper mapper)
     {
         _authRepository = authRepository;
+        _mapper = mapper;
     }
 
     public async Task<UserDetailsDto> Register(RegisterDto userDto)
@@ -47,6 +50,8 @@ public class AuthService : IAuthService
                 Email = user.Email
             };
 
+            _mapper.Map<UserDetailsDto>(user);
+
             return userToReturn;
         }
         catch (FragException ex)
@@ -59,7 +64,7 @@ public class AuthService : IAuthService
         }
     }
 
-    public async Task<(UserDetailsDto, string)> Login(LoginDto userDto)
+    public async Task<(UserDetailsForReturnDto, string)> Login(LoginDto userDto)
     {
         try
         {
@@ -68,12 +73,7 @@ public class AuthService : IAuthService
             if (user is null)
                 throw new FragException("Username or password did not matched");
 
-            var userToReturn = new UserDetailsDto()
-            {
-                UserName = user.UserName,
-                Email = user.Email,
-                DisplayName = user.DisplayName
-            };
+            var userToReturn = _mapper.Map<UserDetailsForReturnDto>(user);
 
             var token = _authRepository.CreateToken(user);
 

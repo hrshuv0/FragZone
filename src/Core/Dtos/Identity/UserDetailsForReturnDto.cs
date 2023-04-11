@@ -1,10 +1,7 @@
-﻿using Core.Dtos.PhotosDto;
+﻿namespace Core.Dtos.Identity;
 
-namespace API.Dtos.User;
-
-public class UserDetailsDto
+public class UserDetailsForReturnDto
 {
-    public string? Id { get; set; }
     public string? UserName { get; set; }
     public string? Email { get; set; }
     public string? DisplayName { get; set; }
@@ -15,6 +12,4 @@ public class UserDetailsDto
     public DateTime LastActive { get; set; }
     public string? Status { get; set; }
     public string? PhotoUrl { get; set; }
-    public IList<PhotoDetailsDto>? Photos { get; set; }
-
 }

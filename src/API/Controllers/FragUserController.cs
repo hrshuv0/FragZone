@@ -1,6 +1,7 @@
 ﻿using API.Dtos.User;
 using API.Helpers.Pagination;
 using AutoMapper;
+using Core.Dtos.Identity;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
