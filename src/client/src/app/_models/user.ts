@@ -7,6 +7,7 @@ export interface IUser {
   displayName : string,
   inGameName: string,
   age: number,
+  photoUrl: string,
   createdTime: Date,
   lastActive: Date,
   photos?: IPhoto[]

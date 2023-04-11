@@ -20,4 +20,12 @@ export class UserService {
     return this.http.get<IUser>(this.baseUrl + 'fragUser/users/' + id);
   }
 
+  updateUser(id: string, user: IUser) {
+    return this.http.put(this.baseUrl + 'fragUser/users/' + id, user);
+  }
+
+  setMainPhoto(userId: string, id: string) {
+    return this.http.post(this.baseUrl + 'photos/' + id + '/setMain/' + userId, {});
+  }
+
 }

@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IPhoto } from "../../_models/photo";
 import { FileUploader } from "ng2-file-upload";
 import { environment } from "../../../environments/environment.development";
 import { AccountService } from "../../_services/account.service";
+import { UserService } from "../../_services/user.service";
+import { AlertifyService } from "../../_services/alertify.service";
 
 @Component({
   selector: 'app-photo-editor',
@@ -13,11 +15,14 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
 
   @Input() photos!: IPhoto[] | undefined;
+  @Output() getMemberPhotoChange = new EventEmitter<string>();
 
   uploader!:FileUploader;
   hasBaseDropZoneOver = false;
 
-  constructor(private authService: AccountService){  }
+  constructor(private authService: AccountService,
+              private userService: UserService,
+              private alertify: AlertifyService){  }
 
   ngOnInit(): void {
     this.initializeUploader();
@@ -57,6 +62,14 @@ export class PhotoEditorComponent implements OnInit {
 
   deletePhoto(id: string) {
 
+  }
+
+  setMainPhoto(photo: IPhoto) {
+    this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
+      console.log('Successfully set to main');
+    }, error => {
+      this.alertify.error(error);
+    })
   }
 
 

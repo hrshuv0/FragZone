@@ -20,10 +20,12 @@ export class AccountService {
   currentPhotoUrl = this.photoUrl.asObservable();
 
 
-  private currentUserSource = new BehaviorSubject<IUser>(null!);
-  currentUser$ = this.currentUserSource.asObservable();
-
   constructor(private http: HttpClient, private alertify: AlertifyService) { }
+
+  changeMemberPhoto(photoUrl: string) {
+    this.photoUrl.next(photoUrl);
+  }
+
 
   login(model: any){
     return this.http.post(this.baseUrl + 'auth/login', model).pipe(
@@ -33,7 +35,7 @@ export class AccountService {
           localStorage.setItem('token', user.token);
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
-          console.log(this.currentUser);
+          this.changeMemberPhoto(this.currentUser?.photoUrl!);
         }
       })
     );
