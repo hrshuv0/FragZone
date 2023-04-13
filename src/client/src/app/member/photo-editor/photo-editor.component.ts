@@ -18,18 +18,19 @@ export class PhotoEditorComponent implements OnInit {
   @Input() photos!: IPhoto[] | undefined;
   @Output() getMemberPhotoChange = new EventEmitter<string>();
 
-  uploader!:FileUploader;
+  uploader!: FileUploader;
   hasBaseDropZoneOver = false;
 
   constructor(private authService: AccountService,
               private userService: UserService,
-              private alertify: AlertifyService){  }
+              private alertify: AlertifyService) {
+  }
 
   ngOnInit(): void {
     this.initializeUploader();
   }
 
-  public fileOverBase(e:any):void {
+  public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
@@ -44,7 +45,9 @@ export class PhotoEditorComponent implements OnInit {
       maxFileSize: 10 * 1024 * 1024
     });
 
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
@@ -57,7 +60,7 @@ export class PhotoEditorComponent implements OnInit {
         }
 
         this.photos?.push(photo);
-        if(photo.isMain){
+        if (photo.isMain) {
           this.authService.changeMemberPhoto(photo.url);
           this.authService.currentUser!.photoUrl! = photo.url;
           localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
@@ -66,9 +69,6 @@ export class PhotoEditorComponent implements OnInit {
     }
   }
 
-  deletePhoto(id: string) {
-
-  }
 
   setMainPhoto(photo: IPhoto) {
     this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
@@ -82,6 +82,19 @@ export class PhotoEditorComponent implements OnInit {
       this.alertify.error(error);
     })
   }
+
+
+  deletePhoto(id: string): void {
+    this.alertify.confirm('Are you sure you want to delete this photo?', () => {
+      this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+        this.photos = this.photos?.filter(p => p.id !== id);
+        this.alertify.success('Photo has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the photo');
+      });
+    });
+  }
+
 
 
 }
