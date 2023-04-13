@@ -8,10 +8,15 @@ import { AccountService } from "../../../_services/account.service";
 })
 export class NavAdminComponent implements OnInit{
 
+  model: any = {};
+  photoUrl!: string;
+
   constructor(public authService: AccountService) {
   }
 
   ngOnInit(): void {
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    console.log(this.photoUrl);
   }
 
 
