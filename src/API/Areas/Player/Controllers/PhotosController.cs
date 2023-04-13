@@ -140,6 +140,46 @@ public class PhotosController : BaseApiController
         return BadRequest("Could not set photo to main");
     }
     
-    
+    [HttpDelete("{id}/delete/{userId}")]
+    public async Task<IActionResult> DeletePhoto(string id, string userId)
+    {
+        try
+        {
+            if (HttpContext.User.GetUserId() != userId)
+                return Unauthorized();
+        
+            var user = await _unitOfWork.UserService.Get(userId);
+            if (user == null)
+                return NotFound("User not found");
+
+            var photoFromRepo = await _unitOfWork.UserService.GetPhoto(id);
+            if (photoFromRepo == null)
+                return NotFound("Photo not found");
+
+            if (photoFromRepo.IsMain)
+                return BadRequest("You cannot delete your main photo");
+
+            if (photoFromRepo.PublicId != null)
+            {
+                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+                var result = await _cloudinary.DestroyAsync(deleteParams);
+
+                if (result.Result == "ok")
+                    await _unitOfWork.UserService.Delete(photoFromRepo);
+            }
+
+            if (photoFromRepo.PublicId == null)
+                await _unitOfWork.UserService.Delete(photoFromRepo);
+
+            if (await _unitOfWork.SaveAllAsync())
+                return Ok();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error while deleting photo");
+        }
+
+        return BadRequest("Failed to delete the photo");
+    }
     
 }
