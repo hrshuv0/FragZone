@@ -34,9 +34,25 @@ public class UserService : IUserService
         return _entityRepository.Delete(entity);
     }
 
-    public Task<bool> SaveAll()
+    public async Task<ApplicationUser> Update(string id, ApplicationUser user)
     {
-        return _entityRepository.SaveAll();
+        try
+        {
+            var userExists = await _entityRepository.Get(id);
+            if(userExists == null)
+                throw new Exception("User not found");
+        
+            return await _entityRepository.Update(user);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async Task<bool> SaveAll()
+    {
+        return await _entityRepository.SaveAll();
     }
 
     public Task<ApplicationUser> Get(string id)

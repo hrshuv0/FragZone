@@ -77,4 +77,27 @@ public class Repository : IRepository
         
         return photo!;
     }
+
+    public async Task<ApplicationUser> Update(ApplicationUser user)
+    {
+        try
+        {
+            var userFromDb = await _context!.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
+            
+            userFromDb!.UserName = user.UserName;
+            userFromDb.Email = user.Email;
+            userFromDb.DisplayName = user.DisplayName;
+            userFromDb.InGameName = user.InGameName;
+
+            _context!.Update(userFromDb);
+            await _context.SaveChangesAsync();
+
+            return userFromDb;
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+        
+    }
 }
