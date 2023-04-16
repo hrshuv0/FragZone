@@ -1,5 +1,7 @@
-﻿using Core.Entities.Identity;
+﻿using Core.Dtos.Identity;
+using Core.Entities.Identity;
 using Core.Entities.Photos;
+using Core.Enums;
 using Core.Repositories;
 using Core.Services;
 
@@ -34,14 +36,26 @@ public class UserService : IUserService
         return _entityRepository.Delete(entity);
     }
 
-    public async Task<ApplicationUser> Update(string id, ApplicationUser user)
+    public async Task<ApplicationUser> Update(string id, UserUpdateDto userDto)
     {
         try
         {
             var userExists = await _entityRepository.Get(id);
             if(userExists == null)
                 throw new Exception("User not found");
-        
+
+            ApplicationUser user = new()
+            {
+                Id = userDto.Id,
+                UserName = userDto.UserName,
+                Email = userDto.Email,
+                DisplayName = userDto.DisplayName,
+                InGameName = userDto.InGameName,
+                CreatedTime = userDto.CreatedTime,
+                LastActive = userDto.LastActive,
+            };
+            user.Status = userDto.Status.ToLower() == "active"? StatusUser.Active: StatusUser.InActive;
+            
             return await _entityRepository.Update(user);
         }
         catch (Exception e)

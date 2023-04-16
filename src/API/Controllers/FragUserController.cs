@@ -62,7 +62,7 @@ public class FragUserController : BaseApiController
     }
     
     [HttpPut("users/{id}")]
-    public async Task<IActionResult> UpdateUser(string id, [FromBody] ApplicationUser user)
+    public async Task<IActionResult> UpdateUser(string id, [FromBody] UserUpdateDto user)
     {
         try
         {
