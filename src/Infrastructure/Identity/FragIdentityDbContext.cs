@@ -1,4 +1,5 @@
-﻿using Core.Entities.Identity;
+﻿using Core.Entities;
+using Core.Entities.Identity;
 using Core.Entities.Photos;
 using Infrastructure.Data.Config;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -15,6 +16,7 @@ public class FragIdentityDbContext : IdentityDbContext<ApplicationUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfiguration(new PhotoConfiguration());
+        builder.ApplyConfiguration(new TeamConfiguration());
         
         base.OnModelCreating(builder);
     }
@@ -22,5 +24,6 @@ public class FragIdentityDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<ApplicationUser>? ApplicationUsers { get; set; }
     public DbSet<Photo>? Photos { get; set; }
+    public DbSet<Team>? Teams { get; set; }
 
 }

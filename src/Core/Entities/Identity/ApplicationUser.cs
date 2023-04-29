@@ -16,6 +16,10 @@ public class ApplicationUser : IdentityUser
     public DateTime LastActive { get; set; }
     public StatusUser Status { get; set; }
 
+    public Guid? TeamId { get; set; }
+    public Team? Team { get; set; }
+    public bool IsLeader { get; set; }
+
     public IList<Photo>? Photos { get; set; }
 
     public ApplicationUser()
@@ -23,5 +27,6 @@ public class ApplicationUser : IdentityUser
         CreatedTime = DateTime.Now;
         LastActive = DateTime.Now;
         Status = StatusUser.Active;
+        IsLeader = false;
     }
 }
